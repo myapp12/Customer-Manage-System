@@ -31,6 +31,7 @@ module.exports = (app) => {
         }
 
         Users.create(user,(err,user) => {
+            console.log('test')
             res.send(user);
         });
 
