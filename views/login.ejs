@@ -9,13 +9,16 @@
     <script src="/assets/scripts/jquery.js"></script>
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="/assets/scripts/bootstrap.min.js"></script>
+    <script src="/assets/scripts/angular.min.js"></script>
     
 
     <!--Load file app-->
     <link rel="stylesheet" href="/assets/css/login.css">
     <script src="/assets/scripts/login.js"></script>
 
-
+    <!--Load sever-->
+    <script src="/assets/server/angular/signupAngular.js"></script>
+    <script src="/assets/server/services/signupServices.js"></script>
 
 
     <title>Đăng nhập MyApp</title>
@@ -23,6 +26,7 @@
 
 <body>
     <div id="logreg-forms">
+        <!--Login-->
         <form class="form-signin">
             <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Đăng nhập</h1>
             <div class="social-login">
@@ -51,15 +55,19 @@
             <!-- <p>Don't have an account!</p>  -->
             <button class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i>
                 Đăng ký tài khoản mới</button>
-        </form>
+        </form><!--End Login-->
 
+        <!--reset password-->
         <form action="#" class="form-reset">
             <input type="email" id="resetEmail" class="form-control" placeholder="Địa chỉ email" required="" autofocus="">
             <button class="btn btn-primary btn-block" type="submit">Lấy lại mật khẩu</button>
             <a href="#" id="cancel_reset"><i class="fas fa-angle-left"></i> Quay lại</a>
-        </form>
+        </form><!--end reset password-->
 
-        <form action="#" class="form-signup">
+
+
+        <!--Signup-->
+        <form class="form-signup" ng-app="signup" ng-controller="signuController">
             <div class="social-login">
                 <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Đăng
                         ký với Facebook</span> </button>
@@ -71,18 +79,18 @@
 
             <p style="text-align:center">Hoặc</p>
 
-            <input name="fullName" type="text" id="user-name" class="form-control" placeholder="Họ và tên" required="" autofocus="">
-            <input name="email" type="email" id="user-email" class="form-control" placeholder="Địa chỉ email" required autofocus="">
-            <input name="password" type="password" id="user-pass" class="form-control" placeholder="Mật khẩu" required autofocus="">
-            <input name="repeatPassword" type="password" id="user-repeatpass" class="form-control" placeholder="Xác nhận mật khẩu" required
+            <input ng-model="name" name="fullName" type="text" id="user-name" class="form-control" placeholder="Họ và tên" required="" autofocus="">
+            <input ng-model="email" name="email" type="email" id="user-email" class="form-control" placeholder="Địa chỉ email" required autofocus="">
+            <input ng-model="password" name="password" type="password" id="user-pass" class="form-control" placeholder="Mật khẩu" required autofocus="">
+            <input ng-model="rePassword" name="repeatPassword" type="password" id="user-repeatpass" class="form-control" placeholder="Xác nhận mật khẩu" required
                 autofocus="">
 
             <div class="input-group">
-                <button class="btn btn-md btn-block submit" type="submit"><i class="fas fa-user-plus"></i> Đăng nhập</button>
+                <button ng-click="btnSignup()" class="btn btn-md btn-block submit" type="submit"><i class="fas fa-user-plus"></i> Đăng ký</button>
             </div>
 
             <a href="#" id="cancel_signup"><i class="fa fa-angle-left"></i> Quay lại</a>
-        </form>
+        </form><!--End Signup-->
         <br>
 
     </div>

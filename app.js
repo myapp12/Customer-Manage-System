@@ -7,22 +7,29 @@ var app = express(); // sử dụng express
 var http = require('http').Server(app);
 var PORT = process.env.PORT || 3000; // Khởi tạo cổng (port)
 
+
+
+
+
 // Khai báo controllers 
 var loginController = require('./src/controllers/loginController.js');
 var signupController = require('./src/controllers/signupController.js');
 
-
-console.log("Hello ban nho");
-console.log("Hello ban nho");
-console.log("Hello ban nho");
-console.log("Hello ban nho");
 // end- khai báo controllers
+
+
+
+
 
 app.set("view engine","ejs"); //  sử dụng view engine ejs 
 app.use(morgan("dev"));
-app.use('/assets', express.static(__dirname + '/public')); // khai báo đường link tĩnh đến file command
+app.use('/assets', express.static(__dirname + "/public")); // khai báo đường link tĩnh đến file command
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
+
+
+
+
 
 
 // use controller
@@ -31,6 +38,9 @@ signupController(app);
 
 
 // end use controller
+
+
+
 
 
 

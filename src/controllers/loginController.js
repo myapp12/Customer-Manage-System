@@ -1,6 +1,3 @@
-var Users = require('../models/userModel.js'); // sử dụng model(collection) users
-
-
 
 module.exports = (app) => {
 
@@ -9,7 +6,5 @@ module.exports = (app) => {
         res.render("login.ejs");
     });
 
-    app.get('/api/users',(req,res) => {
-
-    });
+    
 }
