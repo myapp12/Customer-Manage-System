@@ -31,7 +31,6 @@ module.exports = (app) => {
         }
 
         Users.create(user,(err,user) => {
-            //if(err) throw err;
             res.send(user);
         });
 
