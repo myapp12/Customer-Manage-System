@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Load file cnd-->
+    <script src="/assets/scripts/jquery.js"></script>
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="/assets/scripts/bootstrap.min.js"></script>
+    
+
+    <!--Load file app-->
+    <link rel="stylesheet" href="/assets/css/login.css">
+    <script src="/assets/scripts/login.js"></script>
+
+
+
+
+    <title>Đăng nhập MyApp</title>
+</head>
+
+<body>
+    <div id="logreg-forms">
+        <form class="form-signin">
+            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Đăng nhập</h1>
+            <div class="social-login">
+                <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Đăng
+                        nhập với Facebook</span> </button>
+                <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Đăng
+                        nhập với Google+</span> </button>
+            </div>
+            <p style="text-align:center"> Hoặc </p>
+            <div class="input-group">
+                <input type="email" id="inputEmail" class="form-control" placeholder="Địa chỉ email" required=""
+                    autofocus="">
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Mật khẩu" required="">
+            </div>
+
+            <div class="input-group">
+                <button class="btn btn-md btn-rounded btn-block form-control submit" type="submit"><i class="fas fa-sign-in-alt"></i>
+                    Đăng nhập</button>
+            </div>
+
+            <a href="#" id="forgot_pswd">Quên mật khẩu?</a>
+            <hr>
+            <!-- <p>Don't have an account!</p>  -->
+            <button class="btn btn-primary btn-block" type="button" id="btn-signup"><i class="fas fa-user-plus"></i>
+                Đăng ký tài khoản mới</button>
+        </form>
+
+        <form action="#" class="form-reset">
+            <input type="email" id="resetEmail" class="form-control" placeholder="Địa chỉ email" required="" autofocus="">
+            <button class="btn btn-primary btn-block" type="submit">Lấy lại mật khẩu</button>
+            <a href="#" id="cancel_reset"><i class="fas fa-angle-left"></i> Quay lại</a>
+        </form>
+
+        <form action="#" class="form-signup">
+            <div class="social-login">
+                <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Đăng
+                        ký với Facebook</span> </button>
+            </div>
+            <div class="social-login">
+                <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Đăng
+                        ký với Google+</span> </button>
+            </div>
+
+            <p style="text-align:center">Hoặc</p>
+
+            <input name="fullName" type="text" id="user-name" class="form-control" placeholder="Họ và tên" required="" autofocus="">
+            <input name="email" type="email" id="user-email" class="form-control" placeholder="Địa chỉ email" required autofocus="">
+            <input name="password" type="password" id="user-pass" class="form-control" placeholder="Mật khẩu" required autofocus="">
+            <input name="repeatPassword" type="password" id="user-repeatpass" class="form-control" placeholder="Xác nhận mật khẩu" required
+                autofocus="">
+
+            <div class="input-group">
+                <button class="btn btn-md btn-block submit" type="submit"><i class="fas fa-user-plus"></i> Đăng nhập</button>
+            </div>
+
+            <a href="#" id="cancel_signup"><i class="fa fa-angle-left"></i> Quay lại</a>
+        </form>
+        <br>
+
+    </div>
+</body>
+
+</html>
