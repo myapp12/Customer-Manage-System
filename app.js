@@ -1,3 +1,7 @@
+var passport = require('passport')
+  , FacebookStrategy = require('passport-facebook').Strategy;
+
+var session = require('express-session');
 
 var express = require('express'); // use express
 var morgan = require('morgan'); // thư viện ghi ra các request đến server
@@ -6,6 +10,52 @@ var bodyParser = require('body-parser'); // thư viện lấy dữ liệu từ b
 var app = express(); // sử dụng express
 var http = require('http').Server(app);
 var PORT = process.env.PORT || 3000; // Khởi tạo cổng (port)
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+var Users = require('./src/models/userModel.js'); // sử dụng model(collection) users
+
+
+
+passport.use(new FacebookStrategy({
+    clientID: "2010782642557410",
+    clientSecret: "d85c20918d312fc87572229043c09a6c",
+    callbackURL: "http://localhost:3000/auth/facebook/cb",
+    profileFields : ['email','displayName']
+  },
+  function(accessToken, refreshToken, profile, done) {
+    console.log(profile);
+    Users.findOne({email :profile._json.email} ,(err,user) =>{
+        if(err){
+            console.log("Có lỗi xẩy ra ở login facebook");
+            throw err; 
+        }
+        if(user) {
+            return done(null,user);
+        }
+        var newUser = new Users({
+            email : profile._json.email,
+            fullName : profile._json.name,
+            password : "hifdshifojaidaosjojo12jo31ooidjsajodjajijdsadjioasiod"
+        });
+
+        newUser.save((err) => {
+            return done(null, newUser);
+        })
+
+
+    })
+  }
+));
+
+
+
+
+
+
 
 
 
@@ -38,6 +88,42 @@ signupController(app);
 
 
 // end use controller
+
+
+
+
+
+
+
+
+
+
+app.get('/auth/facebook', passport.authenticate('facebook',{scope : ['email']}));
+app.get('/auth/facebook/cb',
+  passport.authenticate('facebook', { 
+       successRedirect : '/', 
+       failureRedirect: '/' 
+  }),);    
+
+passport.serializeUser((user,done) => {
+    done(null,user.id);
+});
+
+passport.deserializeUser((id,done) =>{
+    mongooseConnection.findOne({id:id},(err,user) => {
+        done(null,user);
+    });
+})
+
+
+
+
+
+
+
+
+
+
 
 
 
