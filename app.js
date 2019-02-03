@@ -13,6 +13,9 @@ var signupController = require('./src/controllers/signupController.js');
 
 
 console.log("Hello ban nho");
+console.log("Hello ban nho");
+console.log("Hello ban nho");
+console.log("Hello ban nho");
 // end- khai báo controllers
 
 app.set("view engine","ejs"); //  sử dụng view engine ejs 
