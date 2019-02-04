@@ -16,6 +16,13 @@ login.controller("loginController",["$scope","loginServices","$window", ($scope 
         $window.location.href = '/auth/facebook'; // điều hướng đến url
     }
 
+    $scope.btnGoogle = () => {
+        $scope.loadding = true;
+        $window.location.href = '/auth/google'; // điều hướng đến url
+    }
+
+
+
     $scope.btnLogin = () => {
         $scope.loadding = true; // Loadding
         loginServices.getUsers().then((users) =>{
