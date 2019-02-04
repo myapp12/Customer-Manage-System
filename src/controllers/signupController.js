@@ -55,7 +55,6 @@ module.exports = (app) => {
                 throw err;
             }else {
                 res.json(users);
-                console.log("ahihi");
             } 
         })
     });

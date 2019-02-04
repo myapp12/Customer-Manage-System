@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="login">
 
 <head>
     <meta charset="UTF-8">
@@ -8,8 +8,10 @@
     <!--Load file cnd-->
     <script src="/assets/scripts/jquery.js"></script>
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="/assets/css/all.css" crossorigin="anonymous" rel="stylesheet">
     <script src="/assets/scripts/bootstrap.min.js"></script>
     <script src="/assets/scripts/angular.min.js"></script>
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     
 
     <!--Load file app-->
@@ -17,36 +19,39 @@
     <script src="/assets/scripts/login.js"></script>
 
     <!--Load sever-->
-    <script src="/assets/server/angular/signupAngular.js"></script>
-    <script src="/assets/server/services/signupServices.js"></script>
+    <script src="/assets/server/angular/loginAngular.js"></script>
+    <script src="/assets/server/services/loginServices.js"></script>
 
 
     <title>Đăng nhập MyApp</title>
 </head>
 
-<body>
+<body ng-controller="loginController">
     <div id="logreg-forms">
         <!--Login-->
-        <form class="form-signin">
+        <form class="form-signin" >
             <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Đăng nhập</h1>
             <div class="social-login">
-                <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Đăng
+                <button ng-click="btnFacebook()" class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Đăng
                         nhập với Facebook</span> </button>
-                <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Đăng
+                <button ng-click="btnGoogle()" class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Đăng
                         nhập với Google+</span> </button>
             </div>
             <p style="text-align:center"> Hoặc </p>
             <div class="input-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Địa chỉ email" required=""
+                <input ng-model="email" type="email" id="inputEmail" class="form-control" placeholder="Địa chỉ email" required=""
                     autofocus="">
             </div>
 
             <div class="input-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Mật khẩu" required="">
+                <input ng-model="password" type="password" id="inputPassword" class="form-control" placeholder="Mật khẩu" required="">
             </div>
+            <p ng-show="loadding" style="margin-top: 10px" class="text-center">
+                <span class="fa fa-spinner fa-pulse fa-3x fa-fw" ></span>
+            </p>
 
             <div class="input-group">
-                <button class="btn btn-md btn-rounded btn-block form-control submit" type="submit"><i class="fas fa-sign-in-alt"></i>
+                <button ng-click="btnLogin()" class="btn btn-md btn-rounded btn-block form-control submit" type="submit"><i class="fas fa-sign-in-alt"></i>
                     Đăng nhập</button>
             </div>
 
@@ -60,6 +65,9 @@
         <!--reset password-->
         <form action="#" class="form-reset">
             <input type="email" id="resetEmail" class="form-control" placeholder="Địa chỉ email" required="" autofocus="">
+            <p ng-show="loadding" style="margin-top: 10px" class="text-center">
+                <span class="fa fa-spinner fa-pulse fa-3x fa-fw" ></span>
+            </p>
             <button class="btn btn-primary btn-block" type="submit">Lấy lại mật khẩu</button>
             <a href="#" id="cancel_reset"><i class="fas fa-angle-left"></i> Quay lại</a>
         </form><!--end reset password-->
@@ -67,24 +75,26 @@
 
 
         <!--Signup-->
-        <form class="form-signup" ng-app="signup" ng-controller="signuController">
-            <div class="social-login">
+        <form class="form-signup">
+            <!-- <div class="social-login">
                 <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Đăng
                         ký với Facebook</span> </button>
             </div>
             <div class="social-login">
                 <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Đăng
                         ký với Google+</span> </button>
-            </div>
+            </div> -->
 
-            <p style="text-align:center">Hoặc</p>
+            <h2 style="text-align:center">Đăng ký</h2>
 
             <input ng-model="name" name="fullName" type="text" id="user-name" class="form-control" placeholder="Họ và tên" required="" autofocus="">
             <input ng-model="email" name="email" type="email" id="user-email" class="form-control" placeholder="Địa chỉ email" required autofocus="">
             <input ng-model="password" name="password" type="password" id="user-pass" class="form-control" placeholder="Mật khẩu" required autofocus="">
             <input ng-model="rePassword" name="repeatPassword" type="password" id="user-repeatpass" class="form-control" placeholder="Xác nhận mật khẩu" required
                 autofocus="">
-
+            <p ng-show="loadding" style="margin-top: 10px" class="text-center">
+                <span class="fa fa-spinner fa-pulse fa-3x fa-fw" ></span>
+            </p>
             <div class="input-group">
                 <button ng-click="btnSignup()" class="btn btn-md btn-block submit" type="submit"><i class="fas fa-user-plus"></i> Đăng ký</button>
             </div>
