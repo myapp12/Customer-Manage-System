@@ -1,12 +1,865 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta charset="utf-8" />
+    <title>My Project</title>
+    <link href="/assets/css/home/container-comment.css" rel="stylesheet" />
+    <link href="/assets/css/home/home.css" rel="stylesheet" />
+    <link href="/assets/css/home/post.css" rel="stylesheet" />
+    <link href="/assets/css/home/status.css" rel="stylesheet" />
+    <link href="/assets/css/home/right-userInfo.css" rel="stylesheet" />
+    <link href="/assets/css/home/edit-status.css" rel="stylesheet" />
+    <link href="/assets/css/home/list-comment.css" rel="stylesheet" />
+    <link href="/assets/css/home/list-like.css" rel="stylesheet" />
+    <link href="/assets/css/home/right-userInfo.css" rel="stylesheet" />
 </head>
+
 <body>
-    <h1>Hello HomeJS</h1>
+    <form name="aspnetForm" method="post" action="./" id="aspnetForm" _lpchecked="1">
+        <div id="top">
+            <div class="wrapper">
+                <div id="logo">
+                    <a class="logo-container">
+                        <img src="/assets/pictures/logo.png" alt="MISA AMIS Logo" width="140" height="34" id="logo-img" />
+                    </a>
+                </div>
+                <div class="search-form">
+                    <div id="search-form">
+                        <input type="text" id="txtSearch" autocomplete="off" class="top-search" placeholder="Nhập nội dung tìm kiếm..."
+                            style="width: 100%">
+                        <a id="ctl00_ctl00_lnkSearch" onclick="SearchWall()" class="search"></a>
+                    </div>
+                </div>
+                <div class=top-user-info>
+
+                    <div id="help">
+                        <a title="Trợ giúp">
+                            <span class=" amis-icon help-icon"></span>
+                        </a>
+                    </div>
+                    <div id="notify">
+                        <div class="notification">
+                            <img src="/assets/pictures/noti-default.png" class="notify-icon" alt="chuông" style="border: none" />
+                        </div>
+                    </div>
+                    <div id="user-info">
+                        <div id="iconmenutop" class="menu-top-icon" style=""></div>
+                        <div class="dropdown">
+                            <a href="javascript:void(0);" id="btn-log-out"><img src="/assets/pictures/profile-menu.png" />
+                            </a>
+
+                            <div display="false" class="dropdown-content">
+
+                                <div id="logout-box">
+                                    <div>
+                                        <div class="GroupConfig">
+
+                                            <div id="full-name-user">
+                                                <a class="fullname" href="javascript:void(0);" style="text-decoration:none; font-weight:bold; color:#355dbd;"></a>
+                                            </div>
+                                        </div>
+                                        <div id="userconfigmanager">
+                                            <ul style=" list-style-type: none;">
+                                                <li id="menuManagement"><a href="javascript:void(0);">Quản lý ứng dụng</a></li>
+                                                <li> <a href="javascript:void(0);">Trang tin của tôi</a></li>
+                                                <li><a id="mdManager">Quản lý ứng dụng và biểu đồ </a></li>
+                                                <li id="liPasswordChange">
+                                                    <a href="javascript:void(0);" id="passwordChange">Cuộc sống mà</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0);" id="activeSession">Phiên đăng nhập
+                                                        của tôi</a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0);" id="NotifyHistory">Thông báo từ hệ
+                                                        thống</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="GroupConfig">
+                                        <div>
+                                            <div id="logout-icon"> <img src="/assets/pictures/logout-icon.png" width="20"
+                                                    height="20" /></div>
+                                            <div id="uiLogout">
+
+                                                <a href="login.html">Đăng xuất</a>
+
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--End_USER_INFO-->
+                </div>
+            </div>
+        </div>
+        <div id="mainContent" class="main">
+            <div class="center-left">
+                <div class="left-user-info">
+                    <div id="avatar" class="left">
+                        <a class="user-name" href="#">
+                            <img class="avt-user-main" src="" style="border-radius:20px;" width="40" height="40" alt="avatar" />
+                        </a>
+                    </div>
+                    <div id="info" class="left" style="margin: 0 0 0 8px; max-width: 115px;">
+                        <div class="username">
+                            <a class="full-name-user" style="text-decoration:none; font-weight:bold; color:#355dbd;"
+                                href="javascript:void(0);"></a>
+                        </div>
+                        <div class="page-private">
+                            <a style="text-decoration:none;" href="javascript:void(0);">Xem trang cá nhân</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="app-main">
+                    <h4>Ứng dụng chính</h4>
+                    <ul style="list-style-type: none;padding-top: 5px;">
+                        <li class="li-appmain">
+                            <a href="#" title="Tin Tức" class="button-key">
+                                <span>
+                                    <img src="/assets/pictures/news_app.png" />
+                                </span>
+                                <div class="key">Tin Tức</div>
+                            </a>
+                        </li>
+                        <li class="li-appmain">
+                            <a href="#" title="Kế Toán" class="button-key">
+                                <span>
+
+                                    <img src="/assets/pictures/accounting_app.png" />
+                                </span>
+                                <div class="key">Kế Toán</div>
+                            </a>
+                        </li>
+                        <li class="li-appmain">
+                            <a href="#" title="Bán Hàng" class="button-key">
+                                <span>
+
+                                    <img src="/assets/pictures/crm_app.png" />
+                                </span>
+                                <div class="key">Bán Hàng</div>
+                            </a>
+                        </li>
+                        <li class="li-appmain">
+                            <a href="#" title="Nhân Sự" class="button-key">
+                                <span>
+
+                                    <img src="/assets/pictures/hrm2_app.png" />
+                                </span>
+                                <div class="key">Nhân Sự</div>
+                            </a>
+                        </li>
+                        <li class="li-appmain">
+                            <a href="#" title="Tài Liệu" class="button-key">
+                                <span>
+
+                                    <img src="/assets/pictures/document_app.png" />
+                                </span>
+                                <div class="key">Tài Liệu</div>
+                            </a>
+                        </li>
+                        <li class="li-appmain">
+                            <a href="#" title="Tài Sản" class="button-key">
+                                <span>
+
+                                    <img src="/assets/pictures/asset_app.png" />
+                                </span>
+                                <div class="key">Tài Sản</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="app-other">
+                    <h4>Ứng dụng khác</h4>
+                    <ul style="list-style-type: none;padding-top: 5px;">
+                        <li class="li-appmain">
+                            <a href="#" title="Khai Thuế" class="button-key">
+                                <span>
+
+                                    <img src="/assets/pictures/mtax_app.png" />
+                                </span>
+                                <div class="key">Khai Thuế</div>
+                            </a>
+                        </li>
+                        <li class="li-appmain">
+                            <a href="#" title="Công Việc" class="button-key">
+                                <span>
+
+                                    <img src="/assets/pictures/task_app.png" />
+                                </span>
+                                <div class="key">Công Việc</div>
+                            </a>
+                        </li>
+                        <li class="li-appmain">
+                            <a href="#" title="Văn Thư" class="button-key">
+                                <span>
+
+                                    <img src="/assets/pictures/email_app.png" />
+                                </span>
+                                <div class="key">Văn Thư</div>
+                            </a>
+                        </li>
+                        <li class="li-appmain">
+                            <a href="#" title="Sáng Kiến" class="button-key">
+                                <span>
+
+                                    <img src="/assets/pictures/initiative_app.png" />
+                                </span>
+                                <div class="key">Sáng Kiến</div>
+                            </a>
+                        </li>
+                        <li class="li-appmain">
+                            <a href="#" title="Download" class="button-key">
+                                <span>
+
+                                    <img src="/assets/pictures/download_app.png" />
+                                </span>
+                                <div class="key">Download</div>
+                            </a>
+                        </li>
+                        <li class="li-appmain">
+                            <a href="#" title="Khách Hàng" class="button-key">
+                                <span>
+
+                                    <img src="/assets/pictures/TimKiemKhachHang_03.png" />
+                                </span>
+                                <div class="key">Khách Hàng</div>
+                            </a>
+                        </li>
+                        <li class="li-appmain">
+                            <a href="#" title="Danh Bạ" class="button-key">
+                                <span>
+
+                                    <img src="/assets/pictures/contact_app.png" />
+                                </span>
+                                <div class="key">Danh Bạ</div>
+                            </a>
+                        </li>
+                        <li class="li-appmain">
+                            <a href="#" title="Kho Ảnh" class="button-key">
+                                <span>
+
+                                    <img src="/assets/pictures/picture_app.png" />
+                                </span>
+                                <div class="key">Kho Ảnh</div>
+                            </a>
+                        </li>
+                        <li class="li-appmain">
+                            <a href="#" title="Kho Phim" class="button-key">
+                                <span>
+
+                                    <img src="/assets/pictures/video_app.png" />
+                                </span>
+                                <div class="key">Kho Phim</div>
+                            </a>
+                        </li>
+                        <li class="li-appmain">
+                            <a href="#" title="Tri Thức" class="button-key">
+                                <span>
+
+                                    <img src="/assets/pictures/knowledge_app.png" />
+                                </span>
+                                <div class="key">Tri Thức</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="priv">
+                    <a href="#" style="text-decoration:none;"><i style="color:#355dbd;">Quay lại phiên bản cũ</i></a>
+                </div>
+            </div>
+            <div id="center-pn">
+                <div id="container-status">
+                    <div id="top-status">
+                        <table>
+                            <tr>
+                                <td>
+                                    <span style="font-family : Helvetica;color: #4b4f56;margin-right: 10px;">Tạo bài
+                                        viết</span>
+                                </td>
+                                <td>
+                                    <span style="font-family : Helvetica;color: #4b4f56;margin-left: 150px;margin-right: 5px;">Chia
+                                        sẻ</span>
+                                </td>
+                                <td>
+                                    <select style="color : #4b4f56;background-color:#e9ebee;padding:1px;" id="public-private">
+                                        <option value="public">Công khai</option>
+                                        <option value="private">Riêng tư</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <span style="font-family : Helvetica;color: #4b4f56;margin: 0px 5px;">Đang cảm thấy</span>
+                                </td>
+                                <td>
+                                    <select style="color : #4b4f56;background-color:#e9ebee;padding:1px;" id="feel-post">
+                                        <option value="default">Cảm xúc</option>
+                                        <option value="đang cảm thấy đáng yêu">Đáng yêu</option>
+                                        <option value="đang cảm thấy bất lực">Bất lực</option>
+                                        <option value="đang cảm thấy yếu đuối">Yếu đuối</option>
+                                        <option value="đang cảm thấy ngu người">Ngu người</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!--END_TOP_STATUS-->
+                    <div id="content-status">
+                        <div id="left-content-status">
+                            <a href="#">
+                                <img class="avt-user-main" src="/assets/pictures/Hai.jpg" style="border-radius : 20px;" width="40" height="40" src=""
+                                    alt="Ảnh đại diện">
+                            </a>
+                        </div>
+                        <!--END_LEFT_CONTENT_STATUS-->
+                        <div id="right-content-status">
+                            <textarea data-autoresize id="text-content-status" rows="1" cols="60" placeholder=""></textarea>
+                        </div>
+                        <!--END_RIGHT_CONTENT_STATUS-->
+                    </div>
+                    <!--END_CONTEN_STATUS-->
+                    <div id="bot-content-status">
+                        <table>
+                            <tr>
+                                <td>
+                                    <span style="font-weight:500;font-family : Helvetica;color: #4b4f56;margin-right: 10px; display:block;padding-top: 8px;">Chia
+                                        sẻ thông tin</span>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0);" id="btn-status">Gửi</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!--END_BOT_CONTENT_STATUS-->
+                </div>
+                <!--END_CONTAINE_STATUS-->
+
+
+
+
+                <div id="posts" style="height:auto">
+
+                    <div class="content-post">
+                        <div class="top-container-post">
+                            <div class="info-user-post">
+                                <div class="avatar-post">
+                                    <img src="/assets/pictures/Hai.jpg" style="border-radius:20px" width="40" height="40" alt="avatar" />
+                                </div>
+                                <!--END_AVATAR_POST-->
+                                <div class="info-post">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <a href="javascript:void(0);" class="user-name-post click-user">Nguyễn Ngọc Hải</a>
+                                            </td>
+                                            <td>
+                                                <span id="" class="" style="font-size: 13px; font-family:Helvetica;color:#616770; padding-left:5px; ">Chia sẻ trạng thái</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span style="font-size: 13px; font-family:Helvetica;color:#616770; ">2
+                                                    phút trước</span>
+                                            </td>
+                                            <td>
+                                                <select style="border:none; color:#616770;">
+                                                    <option value=""> </option>
+                                                </select>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <!--END_INFO_USER_POST-->
+                            </div>
+                            <!--END_INFO_USER_POST-->
+                            <div class="container-text-post">
+                                <span class="text-content-post">
+                                    Hôm nay vui quá hihi
+                                </span>
+                            </div>
+                            <!--END_CONTAINER_TEXT_POST-->
+                        </div>
+                        <!--END_TOP_CONTAINER_POST-->
+
+                        <div class="container-like-comment">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <a href="javascript:void(0);" class="btn-like">Thích</a>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:void(0);" class="btn-comment">Bình luận</a>
+                                    </td>
+                                    <td>
+                                        <a href="javascript:void(0);" class="display-list-like" style="padding-left:320px; font-size:13px; font-family:Helvetica;color:#616770; ">5
+                                            thích</a>
+                                        <a href="javascript:void(0);" class="display-list-comment" style="font-size: 13px; font-family:Helvetica;color:#616770; ">
+                                            5 bình luận</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <!--END_CONTAINER_LIKE_COMMENT-->
+
+
+                        <div class="container-comment">
+
+                            <div class="content-comment">
+                                <div class="left-content-comment">
+                                    <img src="/assets/pictures/Hai.jpg" style="border-radius : 16px;" width="32" height="32" alt="Ảnh đại diện">
+                                </div>
+                                <div class="right-content-comment">
+                                    <div class="text-content">
+                                        <a href="javascript:void(0);" class="user-comment-post click-user">Nguyễn Ngọc Hải</a>
+                                        <span style="font-size: 13px; font-family:Helvetica; padding-left:5px; ">Hôm nay vui quá</span>
+                                    </div>
+                                    <!--text-content-->
+                                    <div class="info-text-comment">
+                                        <a href="javascript:void(0);" class="btn-like-comment">Thích(1)</a>
+                                        <a href="javascript:void(0);" class="btn-comment-comment">Trả lời(1)</a>
+                                        <span style="font-size: 12px; color: #365899;font-family: Helvetica;">5 phút trước</span>
+                                    </div>
+                                    <!--END_INFO_TEXT_COMMENT-->
+                                    <div class="face-sub-comment">
+                                        <div class="container-sub-comment">
+                                            <div class="content-sub-comment">
+                                                <div class="left-content-sub-comment">
+                                                    <img src="/assets/pictures/Hai.jpg" style="border-radius : 12px;" width="24" height="24" alt="Ảnh đại diện">
+                                                </div>
+                                                <div class="right-content-sub-comment">
+                                                    <a href="javascript:void(0);" class="full-name-sub-comment click-user">Nguyễn Ngọc Hải</a>
+                                                    <span style="color: #1c1e21;font-family:Helvetica;font-size: 13px;">
+                                                        Hôm nay vui quá
+                                                    </span>
+                                                    </br>
+                                                    <span style="font-size: 12px; color: #365899;font-family: Helvetica;">vừa xong</span>
+                                                </div>
+                                            </div>
+                                            <!--END_CONTENT_SUB_COMMENT-->
+                                        </div>
+
+
+                                        <div class="avatar-sub-comment">
+                                            <img src="/assets/pictures/Hai.jpg" style="border-radius : 12px;" width="24" height="24" alt="Ảnh đại diện">
+                                        </div>
+                                        <div class="right-sub-comment">
+                                            <textarea placeholder="Trả lời bình luận" cols="53" rows="1" class="sub-text-content-comment rows-comment"></textarea>
+                                        </div>
+                                        <a href="javascript:void(0);" class="button-send-sub-comment">
+                                            Gửi
+                                        </a>
+                                    </div>
+                                    <!--END_FACE_SUB_COMMENT-->
+                                </div>
+                                <!--END_RIGHT_CONTENT_COMMENT-->
+                            </div>
+                            <!--END_CONTENT_COMMENT-->
+
+                        </div>
+                        <!--container-comment-->
+
+
+                        <div class="interface-comment">
+                            <div class="left-interface-comment">
+                                <img src="/assets/pictures/Hai.jpg" style="border-radius : 16px;" width="32" height="32" alt="Ảnh đại diện">
+                            </div>
+                            <div class="right-interface-comment">
+                                <textarea class="text-interface-comment rows-comment" rows="1" cols="50" placeholder="Viết bình luận"></textarea>
+                            </div>
+                            <a href="javascript:void(0);">
+                                <div class="btn-okie-interface-comment">Gửi</div>
+                            </a>
+                        </div>
+                        <!--interface-comment-->
+                    </div>
+                    <!--END_CONTTEN_POST-->
+
+
+                </div>
+                <!--end-posts-->
+
+            </div>
+            <!--center-pn-->
+            <!--------------------------------------------------------------------------------------------------------end center------------------------------------------------------------------>
+            <div class="right-pn">
+                <div class="box-item-wrapper">
+                    <div class="box-center-item">
+                        <div class="profile-box">
+                            <div class="bottom-item">
+                                <div class="content-item">
+                                    <div class="image">
+                                        <centre>
+                                            <img id="image-click-user" src="/assets/pictures/Hai.jpg" alt="Nguyễn Ngọc Hải" />
+                                        </centre>
+                                    </div>
+                                    <div id="full-name-user-info" class="info-user-name">Nguyễn Ngọc Hải</div>
+                                    <div class="employee-code">Nhân viên - B08-0022</div>
+                                    <div class="organization">Phòng nghiên cứu A&D - Trung tâm nghiên cứu & phát triển</div>
+                                    <div class="separate"></div>
+                                    <div class="item">
+                                        <div class="label icon-birthday">Ngày sinh</div>
+                                        <div id="birthday-click-user" class="item-content">22/09/1998</div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="label icon-phoneOffcie">Điện thoại cố định</div>
+                                        <div class="item-content"></div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="label icon-mobilephone">Điện thoại di động</div>
+                                        <div class="item-content">Chưa có</div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="label icon-emailOffice">Email công ty</div>
+                                        <div class="item-content link-style"><a href="mailto:ltchanh@software.misa.com.vn">Chưa
+                                                có</a></div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="label icon-email">Email cá nhân</div>
+                                        <div class="item-content link-style"><a href="mailto:lechanh89@gmail.com">Chưa
+                                                có</a></div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="label icon-address">Địa chỉ</div>
+                                        <div class="item-content">Chưa có</div>
+                                    </div>
+                                </div>
+                                <div class="separate"></div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="account">
+                    <div class="account-real">
+                        <div class="account-real-top">
+                            <span class="module-box-title">KẾ TOÁN</span>
+                            <div class="account-command">
+                                <a href="#" class="amis-icon refesh-icon" title="Nạp" id="refesh"></a>
+                                <a href="#" class="amis-icon setting-icon" title="Cấu hình" id="setting"></a>
+                            </div>
+                        </div>
+                        <div class="account-real-center" style="background-color: #fff;">
+                            <div class="account-content">
+                                <div class="account-item">
+                                    <div title="Tiền mặt" class="lable">Tiền mặt</div>
+                                    <div class="account-number">398.176.974,00</div>
+                                </div>
+                                <div class="account-separate"></div>
+                                <div class="account-item">
+                                    <div title="Tiền gửi" class="lable">Tiền gửi</div>
+                                    <div class="account-number">794.766.422,00</div>
+                                </div>
+                                <div class="account-separate"></div>
+                                <div class="account-item">
+                                    <div title="Tổng tiền" class="lable">Tổng tiền</div>
+                                    <div class="account-number">1.192.943.396,00</div>
+                                </div>
+                                <div class="account-separate"></div>
+                                <div class="account-item">
+                                    <div title="Doanh thu" class="lable">Doanh thu</div>
+                                    <div class="account-number">294.500,00</div>
+                                </div>
+                                <div class="account-separate"></div>
+                                <div class="account-item">
+                                    <div title="Chi phí" class="lable">Chi phí</div>
+                                    <div class="account-number">1,00</div>
+                                </div>
+                                <div class="account-separate"></div>
+                                <div class="account-item">
+                                    <div title="Lợi nhuận trước thuế" class="lable">Lợi nhuận trước thuế</div>
+                                    <div class="account-numbernegative">(12.500,00)</div>
+                                </div>
+                                <div class="account-separate"></div>
+                                <div class="account-item">
+                                    <div title="Lãi ròng tạm tính" class="lable">Lãi ròng tạm tính</div>
+                                    <div class="account-numbernegative">(12.500,00)</div>
+                                </div>
+                                <div class="account-separate"></div>
+                                <div class="account-item">
+                                    <div title="Phải thu" class="lable">Phải thu</div>
+                                    <div class="account-numbernegative">(387.003.000,00)</div>
+                                </div>
+                                <div class="account-separate"></div>
+                                <div class="account-item">
+                                    <div title="Phải trả" class="lable">Phải trả</div>
+                                    <div class="account-number">0,00</div>
+                                </div>
+                                <div class="account-separate"></div>
+                                <div class="account-item">
+                                    <div title="Vay và nợ thuê tài chính" class="lable">Vay và nợ thuê TC</div>
+                                    <div class="account-number">0,00</div>
+                                </div>
+                                <div class="account-separate"></div>
+                                <div class="account-item">
+                                    <div title="Hàng tồn kho" class="lable">Hàng tồn kho</div>
+                                    <div class="account-number">1.578.391.368,00</div>
+                                </div>
+                                <div class="account-separate"></div>
+                            </div>
+                            <div style="text-align:center;padding-top:15px;" class="html-chart-title ">Số liệu kế toán
+                                tổng hợp</div>
+                            <div id="account-title" style="text-align:center;" class="html-chart-title">Công ty Cổ phần
+                                ABC</div>
+                            <div id="account-date" style="text-align:center;padding-bottom:10px" class="html-chart-title">Từ
+                                01/01/2019 đến 31/12/2019</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="link">
+                    <div class="link-real">
+                        <div class="link-real-top">
+                            <span class="module-box-title">LIÊN KẾT</span>
+                            <div class="link-command">
+                                <a href="#" class="amis-icon refesh-icon" title="Nạp" id="refesh"></a>
+                                <a href="#" class="amis-icon setting-icon" title="Cấu hình" id="setting"></a>
+                            </div>
+                        </div>
+                        <div class="link-real-center">
+                            <div class="link-content-box">
+                                <ul id="link-content">
+                                    <li class="linkitem">
+                                        <a href="#">1. Quy trình tự động</a>
+                                        <span class="more-right"></span>
+                                    </li>
+                                    <li class="linkitem">
+                                        <a href="#">2. Trang bảo trì sản phẩm của Misa</a>
+                                        <span class="more-right"></span>
+                                    </li>
+                                    <li class="linkitem" style="border-bottom: 0;">
+                                        <a href="#">Tải UltraViewer</a>
+                                        <span class="more-right"></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+
+    </form>
+    <div id="edit-status" class="container-popup" style="display: none">
+
+        <div class="edit-status-wrapper">
+            <div id="edit-container-status" postID="">
+                <div id="edit-top-status">
+                    <table>
+                        <tr>
+                            <td>
+                                <span style="font-family : Helvetica;color: #4b4f56;margin-right: 10px;">Sửa bài viết</span>
+                            </td>
+                            <td>
+                                <span style="font-family : Helvetica;color: #4b4f56;margin-left: 150px;margin-right: 5px;">Chia
+                                    sẻ</span>
+                            </td>
+                            <td>
+                                <select style="color : #4b4f56;background-color:#e9ebee;padding:1px;" id="edit-public-private">
+                                    <option value="public">Công khai</option>
+                                    <option value="private">Riêng tư</option>
+                                </select>
+                            </td>
+                            <td>
+                                <span style="font-family : Helvetica;color: #4b4f56;margin: 0px 5px;">Đang cảm thấy</span>
+                            </td>
+                            <td>
+                                <select style="color : #4b4f56;background-color:#e9ebee;padding:1px;" id="edit-feel-post">
+                                    <option value="default">Cảm xúc</option>
+                                    <option value="đang cảm thấy đáng yêu">Đáng yêu</option>
+                                    <option value="đang cảm thấy bất lực">Bất lực</option>
+                                    <option value="đang cảm thấy yếu đuối">Yếu đuối</option>
+                                    <option value="đang cảm thấy ngu người">Ngu người</option>
+                                </select>
+                            </td>
+                            <td>
+                                <div id="close-container">
+                                    <span id="close">&times;</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+                <!--END_TOP_STATUS-->
+                <div id="edit-content-status">
+                    <div id="edit-left-content-status">
+                        <a href="#">
+                            <img class="avt-user-main" style="border-radius : 20px;" width="40" height="40" src="" alt="Ảnh đại diện">
+                        </a>
+                    </div>
+                    <!--END_LEFT_CONTENT_STATUS-->
+                    <div id="edit-right-content-status">
+                        <textarea data-autoresize id="text-content-edit-status" rows="8" cols="60" placeholder=""></textarea>
+                    </div>
+                    <!--END_RIGHT_CONTENT_STATUS-->
+                </div>
+                <!--END_CONTEN_STATUS-->
+                <div id="bot-content-edit-status">
+                    <table>
+                        <tr>
+                            <td>
+                                <span style="font-weight:500;font-family : Helvetica;color: #4b4f56;margin-right: 10px; display:block;padding-top: 8px;">Chia
+                                    sẻ thông tin</span>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0);" id="btn-edit-status">Sửa</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!--END_BOT_CONTENT_STATUS-->
+            </div>
+            <!--END_CONTAINE_STATUS-->
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="list-like" class="container-popup" style="display: none">
+        <div id="list-like-container">
+            <div id="top-list-like">
+                <div id="top-list-like-container">
+                    <span id="top-list-like-comtainer-logo">
+                        <img src="/assets/pictures/accounting_app.png" />
+                    </span>
+
+                    <span id="list-like-title">Danh sách người thích</span>
+                    <span id="close-list-like" class="close-box">&times;</span>
+                </div>
+            </div>
+            <div id="center-list-like">
+                <table id="container-list-like">
+                    <!--<tr>
+                        <td>
+                            <div class="list-like-avatar-container">
+                                <img src="../pictures/Hai.jpg" class="list-like-avatar" />
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-font">
+                                <a href="#">Nguyễn Ngọc Hải</a>
+                            </div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="list-like-avatar-container">
+                                <img src="../pictures/Toan.jpg" class="list-like-avatar" />
+
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-font">
+                                <a href="#">Nguyễn Tiến Toàn</a>
+                            </div>
+
+                        </td>
+                    </tr>-->
+                </table>
+            </div>
+            <div id="bottom-list-like">
+
+            </div>
+        </div>
+    </div>
+    <!--END_LIST_LIKE-->
+
+    <div id="list-comment" class="container-popup" style="display: none">
+        <div id="list-comment-container">
+            <div id="top-list-comment">
+                <div id="top-list-comment-container">
+                    <span id="top-list-comment-comtainer-logo">
+                        <img src="/assets/pictures/accounting_app.png" />
+                    </span>
+
+                    <span id="list-comment-title">Danh sách người bình luận</span>
+                    <span id="close-comment-like" class="close-box">&times;</span>
+                </div>
+            </div>
+            <div id="center-list-comment">
+                <table id="container-list-comment">
+                    <!--<tr>
+                        <td>
+                            <div class="list-comment-avatar-container">
+                                <img src="../pictures/Hai.jpg"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-font">
+                                <a href="#">Nguyễn Ngọc Hải</a>
+                            </div>
+
+                        </td>
+                    </tr>-->
+                </table>
+            </div>
+            <div id="bottom-list-comment">
+
+            </div>
+        </div>
+    </div>
+    <!--END_LIST_COMMENT-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="/assets/scripts/jquery.js"></script>
+    <script src="/assets/scripts/home/post.js"></script>
+    <script src="/assets/scripts/home/status.js"></script>
+    <script src="/assets/scripts/home/list-comment.js"></script>
+    <script src="/assets/scripts/home/list-like.js"></script>
+
+
 </body>
+
 </html>

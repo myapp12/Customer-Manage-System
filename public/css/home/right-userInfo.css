@@ -1,0 +1,346 @@
+﻿.right-pn {
+    width: 310px;
+}
+
+.box-item-wrapper {
+    box-shadow: 0 0 1px 0 rgba(0,0,0,.15);
+    border-radius: 3px;
+    background: #fff;
+}
+
+.box-center-item {
+    width: 100%;
+    margin-bottom: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-radius: initial;
+}
+
+div {
+    display: block;
+}
+
+.content-item {
+    padding: 12px;
+}
+
+img {
+    display: block;
+    margin: auto;
+}
+
+.image img {
+    width: 90px;
+    height: 90px;
+    border-radius: 45px;
+    border: 1px solid #f9f9f9;
+}
+
+.info-user-name {
+    text-align: center;
+    font-family: Roboto-Medium,Helvetica,Arial,sans-serif;
+    margin-top: 15px;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.employee-code {
+    clear: both;
+    text-align: center;
+    padding-top: 3px;
+    opacity: .7;
+    line-height: 22px;
+}
+
+.organization {
+    text-align: center;
+    opacity: .7;
+    padding-top: 3px;
+    margin-bottom: 12px;
+    line-height: 22px;
+}
+
+.separate {
+    border-bottom: solid 1px #ebebeb;
+    height: 1px;
+    margin: 5px 0;
+    clear: both;
+}
+
+.label {
+    font-size: 13px;
+    opacity: .7;
+    line-height: 24px;
+    margin-top: 3px;
+}
+
+.item-content {
+    margin-top: 3px;
+    line-height: 22px;
+}
+
+.link-style a {
+    color: #365899;
+    cursor: pointer;
+    font-size: 14px;
+}
+.right-pn {
+    width: 310px;
+}
+
+.convertmobile {
+    border: 1px solid #f50808;
+    margin-bottom: 10px;
+    line-height: 35px;
+    padding-left: 8px;
+    background: #f9d4d4;
+}
+
+.date-dashboard-real {
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.date-dashboard-real-top {
+    cursor: move !important;
+    background-color: #fff !important;
+    border-color: #ededed !important;
+    border-radius: 3px;
+    height: 34px;
+    position: relative;
+    border-bottom: 1px solid #eff2f4;
+    font-size: 12px;
+    line-height: 36px;
+    box-sizing: content-box;
+}
+
+.date-dashboard-real .module-box-title {
+    background-image: url('/assets/pictures/module-birthday.png');
+    background-repeat: no-repeat;
+    background-position: 12px 8px !important;
+    padding-left: 42px !important;
+    position: relative;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.date-dashboard-real-center {
+    padding: 10px 0 !important;
+    border-radius: 0 0 3px 3px;
+    background-color: #fff;
+    box-sizing: content-box;
+}
+
+.birthday-item {
+    display: flex;
+    min-height: 42px;
+    padding: 4px 10px;
+}
+
+.area-avatar {
+    margin-right: 10px;
+}
+
+.avatar {
+    border-radius: 42px;
+    border: 1px solid #eeeff0;
+}
+
+.birthday-info .name {
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.birthday-info .JobTitle, .birthday-info .OrganizationUnit {
+    font-size: 12px;
+    opacity: .7;
+}
+
+.best-seller-real {
+    border-radius: 3px;
+    margin-bottom: 10px;
+    height: 106px;
+    background-color: #fff;
+}
+
+    .best-seller-real .module-box-title {
+        background-image: url('/assets/pictures/module-bestsaller.png');
+        background-repeat: no-repeat;
+        background-position: 12px 8px !important;
+        padding-left: 42px !important;
+        position: relative;
+        display: inline-block;
+        font-weight: 600;
+        font-size: 12px;
+    }
+
+.best-seller-top {
+    cursor: move !important;
+    background-color: #fff !important;
+    border-color: #ededed !important;
+    height: 34px;
+    position: relative;
+    border-bottom: 1px solid #eff2f4;
+    font-size: 12px;
+    line-height: 36px;
+    box-sizing: content-box;
+}
+
+.best-seller-command {
+    display: inline-block;
+    position: absolute;
+    right: 12px;
+    top: 4px;
+}
+/*.amis-icon {
+    margin-left: 7px;
+}*/
+.refesh-icon {
+    background-image: url('/assets/pictures/crm_app.png');
+    background-repeat: no-repeat;
+    height: 16px;
+    width: 16px;
+}
+
+.setting-icon {
+    background-image: url('/assets/pictures/setting-icon.png');
+    background-repeat: no-repeat repeat;
+    height: 16px;
+    width: 16px;
+}
+
+.best-seller-center {
+    height: 71px;
+    padding: 0 12px 10px 12px !important;
+    border-radius: 0 0 3px 3px;
+}
+
+.account-real {
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.account-real-top {
+    background-color: #fff !important;
+    border-color: #ededed !important;
+    border-radius: 3px;
+    height: 34px;
+    position: relative;
+    border-bottom: 1px solid #eff2f4;
+    font-size: 12px;
+    line-height: 36px;
+    box-sizing: content-box;
+}
+
+.account-real .module-box-title {
+    background-image: url('/assets/pictures/crm_app.png');
+    background-repeat: no-repeat;
+    background-position: 12px 8px !important;
+    padding-left: 42px !important;
+    position: relative;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.account-command {
+    display: inline-block;
+    position: absolute;
+    right: 12px;
+    top: 4px;
+}
+
+.account-item {
+    display: flex;
+    padding: 0 15px;
+    font-size: 13px;
+    line-height: 27px;
+    position: relative;
+}
+
+    .account-item .lable {
+        width: 130px;
+    }
+
+    .account-item .account-number {
+        flex: 1;
+        text-align: right;
+    }
+
+    .account-item .account-numbernegative {
+        color: red;
+        flex: 1;
+        text-align: right;
+    }
+
+.account-separate {
+    border-top: solid 1px #eeeff0;
+    height: 1px;
+    margin: 3px 0;
+}
+
+.link-real {
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.link-real-top {
+    background-color: #fff !important;
+    border-color: #ededed !important;
+    border-radius: 3px;
+    height: 34px;
+    position: relative;
+    border-bottom: 1px solid #eff2f4;
+    font-size: 12px;
+    line-height: 36px;
+    box-sizing: content-box;
+}
+
+.link-real .module-box-title {
+    background-image: url('/assets/pictures/crm_app.png');
+    background-repeat: no-repeat;
+    background-position: 12px 8px !important;
+    padding-left: 42px !important;
+    position: relative;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.link-command {
+    display: inline-block;
+    position: absolute;
+    right: 12px;
+    top: 4px;
+}
+
+.link-real-center {
+    border-radius: 0 0 3px 3px;
+    padding: 10px 10px;
+    background-color: #fff;
+}
+
+#link-content {
+}
+
+a {
+    text-decoration: none;
+}
+
+.linkitem {
+    line-height: 1.5;
+    list-style: none outside none;
+    margin: 0;
+    padding: 3.5px 0;
+    border-bottom: 1px solid #eeeff0;
+}
+
+.more-right {
+    background-image: url('/assets/pictures/crm_app.png');
+    background-repeat: no-repeat;
+    width: 10px;
+    height: 10px;
+    position: relative;
+    float: right;
+}

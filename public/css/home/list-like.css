@@ -1,0 +1,81 @@
+﻿#list-like{
+    display: none;
+}
+#list-like-container {
+    min-width: 400px;
+    width: 400px;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: #cfd8dc;
+    overflow: auto;
+}
+#top-list-like {
+    width: 100%;
+    height: 40px;
+    background-color: #355dbd;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    padding: 5px 0px;
+}
+#top-list-like-container {
+    width: 100%;
+    height: 100%;
+    
+    padding: 5px 10px;
+}
+#top-list-like-comtainer-logo{
+    float: left;
+    width: 20px;
+    height: 20px;
+    
+}
+#list-like-title {
+    width: 50%;
+    height: 100%;
+    float: left;
+    color: #fff;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+
+.close-box {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+    .close-box:hover,
+    .close-box:focus {
+        color: #000;
+        text-decoration: solid;
+        cursor: pointer;
+    }
+
+#center-list-like{
+    padding: 15px 25px;
+}
+.text-font{
+    padding-left: 30px;
+    font-weight: bold;
+    font-size: 15px;
+}
+#bottom-list-like {
+    width: 100%;
+    height: 20px;
+    background-color: #355dbd;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 5px 0px;
+}
+.list-like-avatar{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+.list-like-avatar-container{
+    width: 35px;
+    height: 35px;   
+    padding: 0px 5px;
+}

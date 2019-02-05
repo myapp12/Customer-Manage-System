@@ -45,8 +45,6 @@ passport.use(new FacebookStrategy({
   }
 ));
 
-
-
 //gg+
 passport.use(new GoogleStrategy({
     clientID: authFacebook.ggAuth.clientID,
