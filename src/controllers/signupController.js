@@ -3,13 +3,6 @@ var bcrypt = require('bcryptjs');
 
 
 
-
-
-
-var getUsers = (res) => {
-    
-}
-
 module.exports = (app) => {
 
 

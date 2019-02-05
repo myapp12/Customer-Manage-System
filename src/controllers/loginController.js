@@ -12,6 +12,12 @@ var Users = require('../models/userModel.js'); // sử dụng model(collection) 
 
 var bcrypt = require('bcryptjs');
 
+
+var userMain = {
+    fullName : "Lỗi :((",
+    email : ""
+}
+
 // fb
 passport.use(new FacebookStrategy({
     clientID: authFacebook.fbAuth.clientID,
@@ -27,6 +33,8 @@ passport.use(new FacebookStrategy({
             throw err; 
         }
         if(user) { // nếu đã tồn tại user rồi thì điều hướng người dùng đến trang chủ luôn
+            userMain.fullName = profile._json.name;
+            userMain.email = profile._json.email;
             return done(null,user); // gọi url callback 
         }
         var newUser = new Users({
@@ -36,6 +44,8 @@ passport.use(new FacebookStrategy({
         });
 
         newUser.save((err) => { // nếu người dùng chưa tồn tại thì đăng ký cho 1 tài khoản rồi điều hướng đến trang chủ luôn
+            userMain.fullName = profile._json.name;
+            userMain.email = profile._json.email;
             console.log("Đăng nhập thành công bằng Facebook...");
             return done(null, newUser); // gọi url callback 
         })
@@ -60,6 +70,8 @@ passport.use(new GoogleStrategy({
             throw err; 
         }
         if(user) { // nếu đã tồn tại user rồi thì điều hướng người dùng đến trang chủ luôn
+            userMain.fullName = profile.displayName;
+            userMain.email = profile.emails[0].value;
             return done(null,user); // gọi url callback 
         }
         var newUser = new Users({
@@ -69,6 +81,8 @@ passport.use(new GoogleStrategy({
         });
 
         newUser.save((err) => { // nếu người dùng chưa tồn tại thì đăng ký cho 1 tài khoản rồi điều hướng đến trang chủ luôn
+            userMain.fullName = profile.displayName;
+            userMain.email = profile.emails[0].value;
             console.log("Đăng nhập thành công bằng Google+...");
             return done(null, newUser); // gọi url callback 
         })
@@ -87,6 +101,7 @@ passport.serializeUser((user,done) => { // Lấy thông tin lưu vào cookie
 
 passport.deserializeUser((user,done) =>{ // Truy xuất thông tin từ cookie
     Users.findOne({email:user.email},(err,user) => {
+        userMain.fullName = user.fullName;
         done(null,user);
     });
 });
@@ -120,11 +135,14 @@ module.exports = (app) => {
 
 
 
+
     app.post('/api/login',(req,res) => {
         bcrypt.compare(req.body.password, req.body.rePassword).then(function(result) { 
             //console.log(result);
             if(result){ // trùng với mật khẩu dc mã hóa res = true và ngược lại
                 console.log("Đăng nhập thành công ...");
+                userMain.fullName = req.body.fullName;
+                userMain.email = req.body.email;
                 res.json({
                     result : "true",
                 });
@@ -137,7 +155,9 @@ module.exports = (app) => {
         });
         
     });
-    
 
-    
+
+    app.get("/api/userMain",(req,res) => {
+        res.json(userMain);
+    });
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="home">
 
 <head>
     <meta charset="utf-8" />
@@ -13,9 +13,19 @@
     <link href="/assets/css/home/list-comment.css" rel="stylesheet" />
     <link href="/assets/css/home/list-like.css" rel="stylesheet" />
     <link href="/assets/css/home/right-userInfo.css" rel="stylesheet" />
+
+
+    <!--Load cdn js-->
+    <script src="/assets/scripts/angular.min.js"></script>
+   
+    <!--Load sever-->
+    <script src="/assets/server/angular/homeAngular.js"></script>
+    <script src="/assets/server/services/homeServices.js"></script>
+
+
 </head>
 
-<body>
+<body ng-controller="homeController">
     <form name="aspnetForm" method="post" action="./" id="aspnetForm" _lpchecked="1">
         <div id="top">
             <div class="wrapper">
@@ -108,13 +118,13 @@
                 <div class="left-user-info">
                     <div id="avatar" class="left">
                         <a class="user-name" href="#">
-                            <img class="avt-user-main" src="" style="border-radius:20px;" width="40" height="40" alt="avatar" />
+                            <img src="/assets/pictures/Hai.jpg" class="avt-user-main" src="" style="border-radius:20px;" width="40" height="40" alt="avatar" />
                         </a>
                     </div>
                     <div id="info" class="left" style="margin: 0 0 0 8px; max-width: 115px;">
                         <div class="username">
                             <a class="full-name-user" style="text-decoration:none; font-weight:bold; color:#355dbd;"
-                                href="javascript:void(0);"></a>
+                                href="javascript:void(0);">{{ userMain.fullName }}</a>
                         </div>
                         <div class="page-private">
                             <a style="text-decoration:none;" href="javascript:void(0);">Xem trang cá nhân</a>
@@ -292,21 +302,21 @@
                                         sẻ</span>
                                 </td>
                                 <td>
-                                    <select style="color : #4b4f56;background-color:#e9ebee;padding:1px;" id="public-private">
-                                        <option value="public">Công khai</option>
-                                        <option value="private">Riêng tư</option>
+                                    <select ng-model="public" style="color : #4b4f56;background-color:#e9ebee;padding:1px;" id="public-private">
+                                        <option value="Công khai">Công khai</option>
+                                        <option value="Riêng tư">Riêng tư</option>
                                     </select>
                                 </td>
                                 <td>
                                     <span style="font-family : Helvetica;color: #4b4f56;margin: 0px 5px;">Đang cảm thấy</span>
                                 </td>
                                 <td>
-                                    <select style="color : #4b4f56;background-color:#e9ebee;padding:1px;" id="feel-post">
-                                        <option value="default">Cảm xúc</option>
-                                        <option value="đang cảm thấy đáng yêu">Đáng yêu</option>
-                                        <option value="đang cảm thấy bất lực">Bất lực</option>
-                                        <option value="đang cảm thấy yếu đuối">Yếu đuối</option>
-                                        <option value="đang cảm thấy ngu người">Ngu người</option>
+                                    <select ng-model="feel" style="color : #4b4f56;background-color:#e9ebee;padding:1px;" id="feel-post">
+                                        <option value=" chia sẻ thông tin">Cảm xúc</option>
+                                        <option value=" đang cảm thấy đáng yêu">Đáng yêu</option>
+                                        <option value=" đang cảm thấy bất lực">Bất lực</option>
+                                        <option value=" đang cảm thấy yếu đuối">Yếu đuối</option>
+                                        <option value=" đang cảm thấy ngu người">Ngu người</option>
                                     </select>
                                 </td>
                             </tr>
@@ -322,7 +332,7 @@
                         </div>
                         <!--END_LEFT_CONTENT_STATUS-->
                         <div id="right-content-status">
-                            <textarea data-autoresize id="text-content-status" rows="1" cols="60" placeholder=""></textarea>
+                            <textarea ng-model="textContent" data-autoresize id="text-content-status" rows="1" cols="60" placeholder="Bạn đang nghĩ gì"></textarea>
                         </div>
                         <!--END_RIGHT_CONTENT_STATUS-->
                     </div>
@@ -335,7 +345,7 @@
                                         sẻ thông tin</span>
                                 </td>
                                 <td>
-                                    <a href="javascript:void(0);" id="btn-status">Gửi</a>
+                                    <a ng-click="btnSendStatus()" href="javascript:void(0);" id="btn-status">Gửi</a>
                                 </td>
                             </tr>
                         </table>
@@ -349,7 +359,7 @@
 
                 <div id="posts" style="height:auto">
 
-                    <div class="content-post">
+                    <div class="content-post" ng-repeat="post in posts">
                         <div class="top-container-post">
                             <div class="info-user-post">
                                 <div class="avatar-post">
@@ -360,10 +370,10 @@
                                     <table>
                                         <tr>
                                             <td>
-                                                <a href="javascript:void(0);" class="user-name-post click-user">Nguyễn Ngọc Hải</a>
+                                                <a href="javascript:void(0);" class="user-name-post click-user">{{ post.fullName }}</a>
                                             </td>
                                             <td>
-                                                <span id="" class="" style="font-size: 13px; font-family:Helvetica;color:#616770; padding-left:5px; ">Chia sẻ trạng thái</span>
+                                                <span id="" class="" style="font-size: 13px; font-family:Helvetica;color:#616770; padding-left:5px; ">{{ post.feel }}</span>
                                             </td>
                                         </tr>
                                         <tr>
@@ -373,7 +383,7 @@
                                             </td>
                                             <td>
                                                 <select style="border:none; color:#616770;">
-                                                    <option value=""> </option>
+                                                    <option> {{ post.public }} </option>
                                                 </select>
                                             </td>
                                         </tr>
@@ -384,7 +394,7 @@
                             <!--END_INFO_USER_POST-->
                             <div class="container-text-post">
                                 <span class="text-content-post">
-                                    Hôm nay vui quá hihi
+                                    {{ post.textContent }}
                                 </span>
                             </div>
                             <!--END_CONTAINER_TEXT_POST-->
@@ -395,13 +405,13 @@
                             <table>
                                 <tr>
                                     <td>
-                                        <a href="javascript:void(0);" class="btn-like">Thích</a>
+                                        <a ng-click="clickLike(post)" href="javascript:void(0);" class="btn-like">Thích</a>
                                     </td>
                                     <td>
                                         <a href="javascript:void(0);" class="btn-comment">Bình luận</a>
                                     </td>
                                     <td>
-                                        <a href="javascript:void(0);" class="display-list-like" style="padding-left:320px; font-size:13px; font-family:Helvetica;color:#616770; ">5
+                                        <a  href="javascript:void(0);" class="display-list-like" style="padding-left:320px; font-size:13px; font-family:Helvetica;color:#616770; ">5
                                             thích</a>
                                         <a href="javascript:void(0);" class="display-list-comment" style="font-size: 13px; font-family:Helvetica;color:#616770; ">
                                             5 bình luận</a>
@@ -669,8 +679,8 @@
                             </td>
                             <td>
                                 <select style="color : #4b4f56;background-color:#e9ebee;padding:1px;" id="edit-public-private">
-                                    <option value="public">Công khai</option>
-                                    <option value="private">Riêng tư</option>
+                                    <option value="Công khai">Công khai</option>
+                                    <option value="Riêng tư">Riêng tư</option>
                                 </select>
                             </td>
                             <td>
@@ -859,6 +869,7 @@
     <script src="/assets/scripts/home/list-comment.js"></script>
     <script src="/assets/scripts/home/list-like.js"></script>
 
+   
 
 </body>
 

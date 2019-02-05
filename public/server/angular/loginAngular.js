@@ -33,7 +33,9 @@ login.controller("loginController",["$scope","loginServices","$window", ($scope 
 
                     $scope.passwords = {
                         password : $scope.password,
-                        rePassword : user.password
+                        rePassword : user.password,
+                        fullName : user.fullName,
+                        email : user.email
                     }
                     passwords = $scope.passwords;
 
