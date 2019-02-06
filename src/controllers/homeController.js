@@ -53,7 +53,8 @@ module.exports = (app) => {
             public : req.body.public,
             textContent : req.body.textContent,
             feel : req.body.feel,
-            isLike : false
+            isLike : false,
+            isComment : false
         };
         //console.log(req.body.feel);
 
@@ -133,11 +134,11 @@ module.exports = (app) => {
                 console.log("Ui có biến đại ca ơi ... file : homeController, url : /home/like/:email");
                 throw err;
             }else{
-                console.log(req.body.comments[0].fullName);
                 /**
                  * Lưu lại bài post =))
                  */
                 post.comments = req.body.comments;
+                post.isComment = req.body.isComment;
                 post.save(function(err){
                     if(err){
                         console.log("Ui có biến đại ca ơi ... file : homeController, url : /home/comment/");

@@ -130,6 +130,7 @@ home.controller("homeController",["$scope","homeServices","$window","$http",($sc
 
 
 
+
     /* 
     * Lấy thông tin người đăng nhập : fullName
      */

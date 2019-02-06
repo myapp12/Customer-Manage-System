@@ -415,7 +415,7 @@
                                         <a  href="javascript:void(0);" class="display-list-like" style="padding-left:320px; font-size:13px; font-family:Helvetica;color:#616770; ">{{ post.likes.length }}
                                             thích</a>
                                         <a href="javascript:void(0);" class="display-list-comment" style="font-size: 13px; font-family:Helvetica;color:#616770; ">
-                                            {{ post.likes.length }} bình luận</a>
+                                            {{ post.comments.length }} bình luận</a>
                                     </td>
                                 </tr>
                             </table>
@@ -479,12 +479,11 @@
                         </div>
                         <!--container-comment-->
 
-
                         <div class="interface-comment">
                             <div class="left-interface-comment">
                                 <img src="/assets/pictures/Hai.jpg" style="border-radius : 16px;" width="32" height="32" alt="Ảnh đại diện">
                             </div>
-                            <div class="right-interface-comment">
+                            <div class="right-interface-comment">  
                                 <textarea ng-model="$parent.textComment" class="text-interface-comment rows-comment" rows="1" cols="50" placeholder="Viết bình luận"></textarea>
                             </div>
                             <a ng-click="btnComment(post)" href="javascript:void(0);">
