@@ -437,20 +437,20 @@
                                     <!--text-content-->
                                     <div class="info-text-comment">
                                         <a href="javascript:void(0);" class="btn-like-comment">Thích(1)</a>
-                                        <a href="javascript:void(0);" class="btn-comment-comment">Trả lời(1)</a>
+                                        <a ng-click="displaySubcomment(comment)" href="javascript:void(0);" class="btn-comment-comment">Trả lời({{comment.subComments.length}})</a>
                                         <span style="font-size: 12px; color: #365899;font-family: Helvetica;">5 phút trước</span>
                                     </div>
                                     <!--END_INFO_TEXT_COMMENT-->
-                                    <div class="face-sub-comment">
+                                    <div display="0" id="{{ comment._id }}" class="face-sub-comment">
                                         <div class="container-sub-comment">
-                                            <div class="content-sub-comment">
+                                            <div ng-repeat="subComment in comment.subComments" class="content-sub-comment">
                                                 <div class="left-content-sub-comment">
                                                     <img src="/assets/pictures/Hai.jpg" style="border-radius : 12px;" width="24" height="24" alt="Ảnh đại diện">
                                                 </div>
                                                 <div class="right-content-sub-comment">
-                                                    <a href="javascript:void(0);" class="full-name-sub-comment click-user">Nguyễn Ngọc Hải</a>
+                                                    <a href="javascript:void(0);" class="full-name-sub-comment click-user">{{ subComment.fullName }}</a>
                                                     <span style="color: #1c1e21;font-family:Helvetica;font-size: 13px;">
-                                                        Hôm nay vui quá
+                                                        {{ subComment.textContent }}
                                                     </span>
                                                     </br>
                                                     <span style="font-size: 12px; color: #365899;font-family: Helvetica;">vừa xong</span>
@@ -464,9 +464,9 @@
                                             <img src="/assets/pictures/Hai.jpg" style="border-radius : 12px;" width="24" height="24" alt="Ảnh đại diện">
                                         </div>
                                         <div class="right-sub-comment">
-                                            <textarea placeholder="Trả lời bình luận" cols="53" rows="1" class="sub-text-content-comment rows-comment"></textarea>
+                                            <textarea id="{{ comment._id + 'text' }}" placeholder="Trả lời bình luận" cols="53" rows="1" class="sub-text-content-comment rows-comment"></textarea>
                                         </div>
-                                        <a href="javascript:void(0);" class="button-send-sub-comment">
+                                        <a ng-click="btnSendSubcomment(post,comment)" href="javascript:void(0);" class="button-send-sub-comment">
                                             Gửi
                                         </a>
                                     </div>
@@ -484,7 +484,7 @@
                                 <img src="/assets/pictures/Hai.jpg" style="border-radius : 16px;" width="32" height="32" alt="Ảnh đại diện">
                             </div>
                             <div class="right-interface-comment">  
-                                <textarea ng-model="$parent.textComment" class="text-interface-comment rows-comment" rows="1" cols="50" placeholder="Viết bình luận"></textarea>
+                                <textarea id="{{ post._id }}" class="text-interface-comment rows-comment" rows="1" cols="50" placeholder="Viết bình luận"></textarea>
                             </div>
                             <a ng-click="btnComment(post)" href="javascript:void(0);">
                                 <div class="btn-okie-interface-comment">Gửi</div>

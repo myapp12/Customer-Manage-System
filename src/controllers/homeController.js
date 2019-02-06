@@ -138,7 +138,6 @@ module.exports = (app) => {
                  * Lưu lại bài post =))
                  */
                 post.comments = req.body.comments;
-                post.isComment = req.body.isComment;
                 post.save(function(err){
                     if(err){
                         console.log("Ui có biến đại ca ơi ... file : homeController, url : /home/comment/");

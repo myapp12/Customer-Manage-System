@@ -99,25 +99,73 @@ home.controller("homeController",["$scope","homeServices","$window","$http",($sc
      * ***********************************************************************************************************************
      * ***********************************************************************************************************************
      */
-    $scope.textComment = ""; // content comment
     
     /**
      * Được gọi khi người dùng click vào btn send comment
      */
     $scope.btnComment = (post) => {
+        var text = $('#' + post._id).val();
         post.comments.push({
             fullName : $scope.userMain.fullName,
-            textContent : $scope.textComment
+            textContent : text
         });
 
         homeServices.clickComment(post).then(()=>{
             homeServices.getPosts($scope.userMain.email).then((posts) => {
                 $scope.posts = posts.data;
-                $scope.textComment = "";
             });
         });
     };
     // END
+
+
+
+
+
+
+    /** 
+     * ***********************************************************************************************************************
+     * ***********************************************************************************************************************
+     *                                                             Subcomments                 
+     * ***********************************************************************************************************************
+     * ***********************************************************************************************************************
+     */
+    
+    /**
+     * Được gọi khi người dùng click số lượng subComment
+     */
+    $scope.displaySubcomment = (comment) => {
+        if(parseInt($('#' + comment._id).attr("display"))){
+            $('#' + comment._id).css("display","none");
+            $('#' + comment._id).attr("display","0");
+        }else {
+            $('#' + comment._id).css("display","block");
+            $('#' + comment._id).attr("display","1");
+        }
+    }
+
+    /**
+     * Được gọi khi người dùng click btn send subcomment
+     */
+    $scope.btnSendSubcomment = (post,comment) => {
+        var text = $('#' + comment._id + 'text').val();
+        for (var i = 0 ; i < post.comments.length ; ++i){
+            if(post.comments[i]._id === comment._id){
+                post.comments[i].subComments.push({
+                    fullName : $scope.userMain.fullName,
+                    textContent : text
+                });
+                break;
+            }
+        }
+        homeServices.clickComment(post).then(()=>{
+            homeServices.getPosts($scope.userMain.email).then((posts) => {
+                $scope.posts = posts.data;
+            });
+        });
+
+    }
+
 
 
 

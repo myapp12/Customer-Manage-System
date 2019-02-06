@@ -26,7 +26,6 @@ var postSchema = new Schema({
         email : String
     }],
     isLike : Boolean,
-    isComment : Boolean
 });
 
 
