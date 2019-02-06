@@ -28,6 +28,7 @@ passport.use(new FacebookStrategy({
   function(accessToken, refreshToken, profile, done) {
     //console.log(profile);
     Users.findOne({email :profile._json.email} ,(err,user) =>{
+        
         if(err){
             console.log("Có lỗi xẩy ra ở login facebook");
             throw err; 
@@ -140,14 +141,14 @@ module.exports = (app) => {
         bcrypt.compare(req.body.password, req.body.rePassword).then(function(result) { 
             //console.log(result);
             if(result){ // trùng với mật khẩu dc mã hóa res = true và ngược lại
-                console.log("Đăng nhập thành công ...");
+                //console.log("Đăng nhập thành công ...");
                 userMain.fullName = req.body.fullName;
                 userMain.email = req.body.email;
                 res.json({
                     result : "true",
                 });
             }else{
-                console.log("Đăng nhập thất bại ...");
+                //console.log("Đăng nhập thất bại ...");
                 res.json({
                     result : "flase",
                 });

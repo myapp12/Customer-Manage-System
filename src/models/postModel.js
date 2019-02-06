@@ -22,7 +22,9 @@ var postSchema = new Schema({
             isLike : Boolean
         }
     ],
-    likes : Array(String),
+    likes : [{
+        email : String
+    }],
     isLike : Boolean
 });
 

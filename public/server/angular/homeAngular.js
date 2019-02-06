@@ -1,10 +1,11 @@
 var home = angular.module("home",[]);
 
-home.controller("homeController",["$scope","homeServices","$window",($scope,homeServices,$window)=>{
+
+
+home.controller("homeController",["$scope","homeServices","$window","$http",($scope,homeServices,$window,$http)=>{
     
 
-
-
+    
     /**
      * ***********************************************************************************************************************
      * *********************************************************************************************************************** 
@@ -39,6 +40,12 @@ home.controller("homeController",["$scope","homeServices","$window",($scope,home
             feel : $scope.feel
         };
         homeServices.postStatus($scope.status).then((post) => {
+            homeServices.getPosts($scope.userMain.email).then((posts) => {
+                $scope.posts = posts.data;
+                $scope.public = "Công khai";
+                $scope.textContent = "";
+                $scope.feel = " chia sẻ thông tin";
+            });
             alert("Bài viết đã sẵn sàng ....");
         });
     }
@@ -58,16 +65,21 @@ home.controller("homeController",["$scope","homeServices","$window",($scope,home
      */
 
     $scope.posts;
-    homeServices.getPosts().then((posts) => {
-        $scope.posts = posts.data;
-    });
+    
 
-
+    /**
+     * ***********************************************************************************************************************
+     * ***********************************************************************************************************************
+     *                                                             Like                 
+     * ***********************************************************************************************************************
+     * ***********************************************************************************************************************
+     */
     $scope.clickLike = (post) => {
-        
-        console.log("hihi");
+
         homeServices.clickLike(post,$scope.userMain.email).then(() => {
-            
+            homeServices.getPosts($scope.userMain.email).then((posts) => {
+                $scope.posts = posts.data;
+            });
         });
     }
 
@@ -80,20 +92,32 @@ home.controller("homeController",["$scope","homeServices","$window",($scope,home
 
 
 
+    /** 
+     * ***********************************************************************************************************************
+     * ***********************************************************************************************************************
+     *                                                             comments                 
+     * ***********************************************************************************************************************
+     * ***********************************************************************************************************************
+     */
+    $scope.textComment = ""; // content comment
+    
+    /**
+     * Được gọi khi người dùng click vào btn send comment
+     */
+    $scope.btnComment = (post) => {
+        post.comments.push({
+            fullName : $scope.userMain.fullName,
+            textContent : $scope.textComment
+        });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        homeServices.clickComment(post).then(()=>{
+            homeServices.getPosts($scope.userMain.email).then((posts) => {
+                $scope.posts = posts.data;
+                $scope.textComment = "";
+            });
+        });
+    };
+    // END
 
 
 
@@ -112,5 +136,9 @@ home.controller("homeController",["$scope","homeServices","$window",($scope,home
     homeServices.getUserMain().then( (userMain)=> {
         $scope.userMain.fullName = userMain.data.fullName;
         $scope.userMain.email = userMain.data.email;
+        homeServices.getPosts($scope.userMain.email).then((posts) => {
+            $scope.posts = posts.data;
+        });
     });
+    
 }]);

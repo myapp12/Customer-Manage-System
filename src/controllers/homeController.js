@@ -2,6 +2,9 @@ var Posts = require('../models/postModel.js');
 
 
 
+
+
+
 module.exports = (app) => {
     app.get("/home",(req,res) => {
         res.render("home.ejs");
@@ -10,15 +13,34 @@ module.exports = (app) => {
     /**
      * Lấy danh sách các bài posts
      */
-    app.get("/home/posts",(req,res) => {
+    app.get("/home/posts/:email",(req,res) => {
         Posts.find(function(err, posts){
             if (err) {
                 console.log("Đã có lỗi xẩy ra ( Lấy danh sách posts, file : homeController.js )");
                 throw err;
             }else {
-                res.json(posts);
+                var tempPosts = [];
+                for(var i = posts.length - 1 ; i >= 0 ; --i){ // Sắp xếp lại các bài post và một số thứ khác
+                    /**
+                     * set isLike
+                     */
+                    posts[i].isLike = false;
+                    for(var j = posts[i].likes.length - 1; j >= 0 ; --j){
+                        if(posts[i].likes[j].email === req.params.email){
+                            //console.log("Like thanh cong");
+                            posts[i].isLike = true;
+                            break;
+                        }
+                    }
+                    // End set isLike
+
+
+                    tempPosts.push(posts[i]);
+                }
+              
+                res.json(tempPosts);
             } 
-        })
+        });
     });
 
 
@@ -33,7 +55,7 @@ module.exports = (app) => {
             feel : req.body.feel,
             isLike : false
         };
-        console.log(req.body.feel);
+        //console.log(req.body.feel);
 
         Posts.create(post,(err,post) => {
             if(err){
@@ -50,26 +72,85 @@ module.exports = (app) => {
      * click like 
      */
     app.put("/home/like/:email", function(req,res){
-        if(!req.body._id){
-            console.log("Có lỗi rồi đại ca ơi! file : homeController.js, url: /home/like");
-            res.status(500);
-            
-        }else {
-            Posts.update({
-                _id : req.body._id,
-            },{
-                //edit in here
-                likes : req.body.likes.push("req.params.email"),
-                isLike : !req.body.isLike,
-            },function(err,post){
-                if(err){
-                    res.status(500);
-                    throw err;
-                }else {
-                    console.log(post);
+        Posts.findOne({_id : req.body._id},function(err,post){
+            if(err){
+                console.log("Ui có biến đại ca ơi ... file : homeController, url : /home/like/:email");
+                throw err;
+            }else{
+                /**
+                 * handle click Like
+                 */
+                // var result = false;
+                // for(var i = post.likes.length - 1 ; i >= 0 ; --i){
+                //     if(req.params.email === post.likes[i].email){
+                //         result = true;
+                //     }
+                // }
+                if(!req.body.isLike){
+                    //console.log("Like");
+                    post.likes.push({email : req.params.email});
+                    post.isLike = true;
+                }else{
+                    post.likes.forEach(function(value,index){
+                        if(req.params.email === value.email){
+                            console.log(index);
+                            post.likes.splice(index,1);
+                            post.isLike = false;
+                        }
+                    });
                 }
-            })
-        }
+                
+                // End handle click Like
+
+
+
+                /**
+                 * Lưu lại bài post =))
+                 */
+                post.save(function(err){
+                    if(err){
+                        console.log("Ui có biến đại ca ơi ... file : homeController, url : /home/like/:email");
+                        throw err;
+                    }else{
+                        //console.log("Update thành công ...");
+                        return res.send();
+                    }
+                });
+                // End 
+            }
+            
+        });
+    });
+
+
+
+    /**
+     * btn comment
+     */
+    app.put("/home/comment", function(req,res){
+        Posts.findOne({_id : req.body._id},function(err,post){
+            if(err){
+                console.log("Ui có biến đại ca ơi ... file : homeController, url : /home/like/:email");
+                throw err;
+            }else{
+                console.log(req.body.comments[0].fullName);
+                /**
+                 * Lưu lại bài post =))
+                 */
+                post.comments = req.body.comments;
+                post.save(function(err){
+                    if(err){
+                        console.log("Ui có biến đại ca ơi ... file : homeController, url : /home/comment/");
+                        throw err;
+                    }else{
+                        console.log("Comment thành công ...");
+                        return res.send();
+                    }
+                });
+                // End 
+            }
+            
+        });
     });
 
 

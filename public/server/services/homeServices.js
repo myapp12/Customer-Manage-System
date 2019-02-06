@@ -13,11 +13,14 @@ home.factory("homeServices",["$http", ($http) => { // Tạo sevices gọi API
         postStatus : (post) => {
             return $http.post("/home/post", post);
         },
-        getPosts : () => {
-            return $http.get("/home/posts");
+        getPosts : (email) => {
+            return $http.get("/home/posts/" + email);
         },
         clickLike : (post,email) => {
             return $http.put("/home/like/" + email,post);
+        },
+        clickComment : (post) => {
+            return $http.put("/home/comment", post);
         }
     }
     

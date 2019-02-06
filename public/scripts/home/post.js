@@ -2,6 +2,21 @@
 
 $(document).ready(()=>{
     $('#posts').on('click', '.rows-comment', postJS.keydownComment); 
+
+
+    // $('#posts').on('click', '.btn-like', function(){
+    //     $.ajax({
+    //         method : "GET",
+    //         url : '/home/posts',
+    //         success : function(response){
+    //             console.log(response);
+    //         },
+    //         fail : function(response) {
+
+    //         }
+    //     });
+    // }); 
+
 });
 
 
@@ -30,3 +45,4 @@ var postJS = {
         });
     },
 }
+

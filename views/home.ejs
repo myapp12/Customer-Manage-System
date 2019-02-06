@@ -353,7 +353,7 @@
                     <!--END_BOT_CONTENT_STATUS-->
                 </div>
                 <!--END_CONTAINE_STATUS-->
-
+                
 
 
 
@@ -405,16 +405,17 @@
                             <table>
                                 <tr>
                                     <td>
-                                        <a ng-click="clickLike(post)" href="javascript:void(0);" class="btn-like">Thích</a>
+                                        <a ng-show="post.isLike" style="color: #4385ef" ng-click="clickLike(post)" href="javascript:void(0);" class="btn-like">Thích</a>
+                                        <a ng-show="!post.isLike" style="color: #616770" ng-click="clickLike(post)" href="javascript:void(0);" class="btn-like">Thích</a>
                                     </td>
                                     <td>
                                         <a href="javascript:void(0);" class="btn-comment">Bình luận</a>
                                     </td>
                                     <td>
-                                        <a  href="javascript:void(0);" class="display-list-like" style="padding-left:320px; font-size:13px; font-family:Helvetica;color:#616770; ">5
+                                        <a  href="javascript:void(0);" class="display-list-like" style="padding-left:320px; font-size:13px; font-family:Helvetica;color:#616770; ">{{ post.likes.length }}
                                             thích</a>
                                         <a href="javascript:void(0);" class="display-list-comment" style="font-size: 13px; font-family:Helvetica;color:#616770; ">
-                                            5 bình luận</a>
+                                            {{ post.likes.length }} bình luận</a>
                                     </td>
                                 </tr>
                             </table>
@@ -424,14 +425,14 @@
 
                         <div class="container-comment">
 
-                            <div class="content-comment">
+                            <div ng-repeat="comment in post.comments" class="content-comment">
                                 <div class="left-content-comment">
                                     <img src="/assets/pictures/Hai.jpg" style="border-radius : 16px;" width="32" height="32" alt="Ảnh đại diện">
                                 </div>
                                 <div class="right-content-comment">
                                     <div class="text-content">
-                                        <a href="javascript:void(0);" class="user-comment-post click-user">Nguyễn Ngọc Hải</a>
-                                        <span style="font-size: 13px; font-family:Helvetica; padding-left:5px; ">Hôm nay vui quá</span>
+                                        <a href="javascript:void(0);" class="user-comment-post click-user">{{ comment.fullName }}</a>
+                                        <span style="font-size: 13px; font-family:Helvetica; padding-left:5px; ">{{ comment.textContent }}</span>
                                     </div>
                                     <!--text-content-->
                                     <div class="info-text-comment">
@@ -484,17 +485,15 @@
                                 <img src="/assets/pictures/Hai.jpg" style="border-radius : 16px;" width="32" height="32" alt="Ảnh đại diện">
                             </div>
                             <div class="right-interface-comment">
-                                <textarea class="text-interface-comment rows-comment" rows="1" cols="50" placeholder="Viết bình luận"></textarea>
+                                <textarea ng-model="$parent.textComment" class="text-interface-comment rows-comment" rows="1" cols="50" placeholder="Viết bình luận"></textarea>
                             </div>
-                            <a href="javascript:void(0);">
+                            <a ng-click="btnComment(post)" href="javascript:void(0);">
                                 <div class="btn-okie-interface-comment">Gửi</div>
                             </a>
                         </div>
                         <!--interface-comment-->
                     </div>
                     <!--END_CONTTEN_POST-->
-
-
                 </div>
                 <!--end-posts-->
 
