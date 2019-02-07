@@ -6,7 +6,8 @@ var userSchema = new Schema({
     fullName : String,
     email : String,
     password : String,
-    image : { data: Buffer, contentType: String }
+    image : { data: Buffer, contentType: String },
+    pathImage : String
 });
 
 var Users = mongoose.model("Users", userSchema);

@@ -16,19 +16,27 @@ var postSchema = new Schema({
             subComments : [{
                 email : String,
                 fullName : String,
-                textContent : String
+                textContent : String,
+                pathImageUser : String,
+                dateTime : Number,
+                timePost : String
             }],
             likes : [{
-                fullName : String,
                 email : String
             }],
-            isLike : Boolean
+            isLike : Boolean,
+            pathImageUser : String,
+            dateTime : Number,
+            timePost : String
         }
     ],
     likes : [{
         email : String
     }],
     isLike : Boolean,
+    pathImageUser : String,
+    dateTime : Number,
+    timePost : String
 });
 
 

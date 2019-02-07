@@ -27,7 +27,7 @@ passport.use(new FacebookStrategy({
     profileFields : authFacebook.fbAuth.profileFields
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log(profile._json);
+    //console.log(profile._json);
     Users.findOne({email :profile._json.email} ,(err,user) =>{
         
         if(err){
@@ -173,6 +173,7 @@ module.exports = (app) => {
                 console.log("Đã có lỗi xẩy ra ... file LoginController, url:/api/userMain");    
                 throw err
             }else{
+                //console.log(user.email);
                 res.json(user);
             }
         });
@@ -182,7 +183,8 @@ module.exports = (app) => {
 
     app.get("/api/image/:email",(req,res) => {
         //console.log(userMain.image);
-        if(req.params.email.trim() !== ""){
+        //debugger;
+        if(req.params.email){
             Users.findOne({email : req.params.email},function(err,user){
                 if(err){
                     console.log("Đã có lỗi xẩy ra ... file LoginController, url:/api/userMain");    

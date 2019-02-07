@@ -119,7 +119,7 @@
                 <div class="left-user-info">
                     <div id="avatar" class="left">
                         <a class="user-name" href="#">
-                            <img ng-src="{{ 'http://localhost:3000/api/image/' +  userMain.email }}" class="avt-user-main" src="" style="border-radius:20px;" width="40" height="40" alt="avatar" />
+                            <img ng-src="{{ userMain.pathImage}}" class="avt-user-main" src="" style="border-radius:20px;" width="40" height="40" alt="avatar" />
                         </a>
                     </div>
                     <div id="info" class="left" style="margin: 0 0 0 8px; max-width: 115px;">
@@ -327,7 +327,7 @@
                     <div id="content-status">
                         <div id="left-content-status">
                             <a href="#">
-                                <img class="avt-user-main" ng-src="{{ 'http://localhost:3000/api/image/' +  userMain.email }}" style="border-radius : 20px;" width="40" height="40" src=""
+                                <img class="avt-user-main" ng-src="{{ userMain.pathImage }}" style="border-radius : 20px;" width="40" height="40" src=""
                                     alt="Ảnh đại diện">
                             </a>
                         </div>
@@ -364,7 +364,7 @@
                         <div class="top-container-post">
                             <div class="info-user-post">
                                 <div class="avatar-post">
-                                    <img ng-src="{{ 'http://localhost:3000/api/image/' +  post.email }}" style="border-radius:20px" width="40" height="40" alt="avatar" />
+                                    <img ng-src="{{ post.pathImageUser }}" style="border-radius:20px" width="40" height="40" alt="avatar" />
                                 </div>
                                 <!--END_AVATAR_POST-->
                                 <div class="info-post">
@@ -379,8 +379,9 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <span style="font-size: 13px; font-family:Helvetica;color:#616770; ">2
-                                                    phút trước</span>
+                                                <span style="font-size: 13px; font-family:Helvetica;color:#616770; ">
+                                                   {{ post.timePost }}
+                                                </span>
                                             </td>
                                             <td>
                                                 <select style="border:none; color:#616770;">
@@ -428,7 +429,7 @@
 
                             <div ng-repeat="comment in post.comments" class="content-comment">
                                 <div class="left-content-comment">
-                                    <img ng-src="{{ 'http://localhost:3000/api/image/' +  comment.email }}" style="border-radius : 16px;" width="32" height="32" alt="Ảnh đại diện">
+                                    <img ng-src="{{ comment.pathImageUser }}" style="border-radius : 16px;" width="32" height="32" alt="Ảnh đại diện">
                                 </div>
                                 <div class="right-content-comment">
                                     <div class="text-content">
@@ -437,16 +438,21 @@
                                     </div>
                                     <!--text-content-->
                                     <div class="info-text-comment">
-                                        <a href="javascript:void(0);" class="btn-like-comment">Thích(1)</a>
+                                        <a ng-show="comment.isLike" style="color: #4385ef;" ng-click="btnLikeComment(post,comment)" href="javascript:void(0);" class="btn-like-comment">thích({{ comment.likes.length }})</a>
+                                        <a ng-show="!comment.isLike" style="color: #616770" ng-click="btnLikeComment(post,comment)" href="javascript:void(0);" class="btn-like-comment">thích({{ comment.likes.length }})</a>
+
+
                                         <a ng-click="displaySubcomment(comment)" href="javascript:void(0);" class="btn-comment-comment">Trả lời({{comment.subComments.length}})</a>
-                                        <span style="font-size: 12px; color: #365899;font-family: Helvetica;">5 phút trước</span>
+                                        <span style="font-size: 12px; color: #365899;font-family: Helvetica;">
+                                            {{ comment.timePost }}
+                                        </span>
                                     </div>
                                     <!--END_INFO_TEXT_COMMENT-->
                                     <div display="0" id="{{ comment._id }}" class="face-sub-comment">
                                         <div class="container-sub-comment">
                                             <div ng-repeat="subComment in comment.subComments" class="content-sub-comment">
                                                 <div class="left-content-sub-comment">
-                                                    <img ng-src="{{ 'http://localhost:3000/api/image/' +  subComment.email }}" style="border-radius : 12px;" width="24" height="24" alt="Ảnh đại diện">
+                                                    <img ng-src="{{ subComment.pathImageUser }}" style="border-radius : 12px;" width="24" height="24" alt="Ảnh đại diện">
                                                 </div>
                                                 <div class="right-content-sub-comment">
                                                     <a href="javascript:void(0);" class="full-name-sub-comment click-user">{{ subComment.fullName }}</a>
@@ -454,7 +460,9 @@
                                                         {{ subComment.textContent }}
                                                     </span>
                                                     </br>
-                                                    <span style="font-size: 12px; color: #365899;font-family: Helvetica;">vừa xong</span>
+                                                    <span style="font-size: 12px; color: #365899;font-family: Helvetica;">
+                                                        {{ subComment.timePost }}
+                                                    </span>
                                                 </div>
                                             </div>
                                             <!--END_CONTENT_SUB_COMMENT-->
@@ -462,7 +470,7 @@
 
 
                                         <div class="avatar-sub-comment">
-                                            <img ng-src="{{ 'http://localhost:3000/api/image/' +  userMain.email }}" style="border-radius : 12px;" width="24" height="24" alt="Ảnh đại diện">
+                                            <img ng-src="{{ userMain.pathImage }}" style="border-radius : 12px;" width="24" height="24" alt="Ảnh đại diện">
                                         </div>
                                         <div class="right-sub-comment">
                                             <textarea id="{{ comment._id + 'text' }}" placeholder="Trả lời bình luận" cols="53" rows="1" class="sub-text-content-comment rows-comment"></textarea>
@@ -482,7 +490,7 @@
 
                         <div class="interface-comment">
                             <div class="left-interface-comment">
-                                <img ng-src="{{ 'http://localhost:3000/api/image/' +  userMain.email }}" style="border-radius : 16px;" width="32" height="32" alt="Ảnh đại diện">
+                                <img ng-src="{{   userMain.pathImage }}" style="border-radius : 16px;" width="32" height="32" alt="Ảnh đại diện">
                             </div>
                             <div class="right-interface-comment">  
                                 <textarea id="{{ post._id }}" class="text-interface-comment rows-comment" rows="1" cols="50" placeholder="Viết bình luận"></textarea>
@@ -508,7 +516,7 @@
                                 <div class="content-item">
                                     <div class="image">
                                         <centre>
-                                            <img id="image-click-user" ng-src="{{ 'http://localhost:3000/api/image/' +  userMain.email }}" alt="Nguyễn Ngọc Hải" />
+                                            <img id="image-click-user" ng-src="{{ userMain.pathImage }}" alt="Nguyễn Ngọc Hải" />
                                         </centre>
                                     </div>
                                     <div id="full-name-user-info" class="info-user-name">{{ userMain.fullName }}</div>

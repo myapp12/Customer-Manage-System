@@ -10,8 +10,10 @@ home.controller("homeController",["$scope","homeServices","$window","$http",($sc
     homeServices.getUserMain().then( (userMain)=> {
         $scope.userMain.fullName = userMain.data.fullName;
         $scope.userMain.email = userMain.data.email;
-        $scope.userMain.image = userMain.data.image;
-        console.log($scope.userMain.image);
+        $scope.userMain.pathImage = userMain.data.pathImage;
+
+        
+        // console.log($scope.userMain.image);
         homeServices.getPosts($scope.userMain.email).then((posts) => {
             $scope.posts = posts.data;
         });
@@ -50,7 +52,8 @@ home.controller("homeController",["$scope","homeServices","$window","$http",($sc
             public : $scope.public,
             textContent : $scope.textContent,
             feel : $scope.feel,
-            email : $scope.userMain.email
+            email : $scope.userMain.email,
+            pathImageUser : $scope.userMain.pathImage
         };
         homeServices.postStatus($scope.status).then((post) => {
             homeServices.getPosts($scope.userMain.email).then((posts) => {
@@ -121,7 +124,10 @@ home.controller("homeController",["$scope","homeServices","$window","$http",($sc
         post.comments.push({
             fullName : $scope.userMain.fullName,
             textContent : text,
-            email : $scope.userMain.email
+            email : $scope.userMain.email,
+            pathImageUser : $scope.userMain.pathImage,
+            dateTime : new Date().getTime(),
+            isLike : false
         });
 
         homeServices.clickComment(post).then(()=>{
@@ -158,17 +164,22 @@ home.controller("homeController",["$scope","homeServices","$window","$http",($sc
         }
     }
 
+
+
+
     /**
      * Được gọi khi người dùng click btn send subcomment
      */
     $scope.btnSendSubcomment = (post,comment) => {
         var text = $('#' + comment._id + 'text').val();
         for (var i = 0 ; i < post.comments.length ; ++i){
-            if(post.comments[i]._id === comment._id){
+            if(post.comments[i]._id === comment._id){ //
                 post.comments[i].subComments.push({
                     fullName : $scope.userMain.fullName,
                     textContent : text,
-                    email : $scope.userMain.email
+                    email : $scope.userMain.email,
+                    pathImageUser : $scope.userMain.pathImage,
+                    dateTime : new Date().getTime()
                 });
                 break;
             }
@@ -181,19 +192,22 @@ home.controller("homeController",["$scope","homeServices","$window","$http",($sc
 
     }
 
+    /**
+     * Được gọi khi người dùng nhấn vào like comment
+     */
+
+     $scope.btnLikeComment = (post,comment) => {
+         //alert("Hello : " + comment.textContent);
+        
+         homeServices.clickLikeComment(post,comment,$scope.userMain.email).then(()=>{
+            homeServices.getPosts($scope.userMain.email).then((posts) => {
+                $scope.posts = posts.data;
+            });
+         });
+     }
 
 
 
 
-
-
-
-
-
-
-
-
-
-    
     
 }]);

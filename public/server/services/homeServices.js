@@ -21,6 +21,9 @@ home.factory("homeServices",["$http", ($http) => { // Tạo sevices gọi API
         },
         clickComment : (post) => {
             return $http.put("/home/comment", post);
+        },
+        clickLikeComment : (post,comment,email) => {
+            return $http.put("/home/likeComment/" + email + "/id/" + post._id,comment);
         }
     }
     

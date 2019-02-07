@@ -116,6 +116,7 @@ module.exports = (app) => {
     });
 
     app.post('/successSignup', upload.single("file"),(req,res)=>{
+        //console.log(req.file);
         Users.findOne({email : email},function(err,user){
             if(err){
                 console.log("Ui có biến đại ca ơi... file : signupController, url : /successSignup");
@@ -126,6 +127,7 @@ module.exports = (app) => {
                     data : fs.readFileSync(path),
                     contentType : "image/png"
                 }
+                user.pathImage = "/assets/images/uploads/" + req.file.filename;
                 user.save((err)=>{
                     if(err){
                         console.log("Ui có biến đại ca ơi... file : signupController, url : /successSignup");
