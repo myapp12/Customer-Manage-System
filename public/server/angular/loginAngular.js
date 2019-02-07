@@ -1,4 +1,5 @@
 
+
 var login = angular.module("login",[]); // create ng-app
 
 
@@ -100,8 +101,8 @@ login.controller("loginController",["$scope","loginServices","$window", ($scope 
                         var user = $scope.user;
                         loginServices.signup(user).then(()=>{
                             $scope.loadding = false;
-                            alert("Đăng ký thành công, đăng nhập ngay ...");
-                            $window.location.href = '/'; // điều hướng về trang login
+                            alert("Tiếp tục ...");
+                            $window.location.href = '/success/signup'; // điều hướng về trang login
                         })
                     }
                 });
@@ -110,5 +111,3 @@ login.controller("loginController",["$scope","loginServices","$window", ($scope 
         }
     }
 }]);
-
-

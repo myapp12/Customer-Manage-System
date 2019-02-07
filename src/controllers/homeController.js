@@ -49,6 +49,7 @@ module.exports = (app) => {
      */
     app.post("/home/post",(req,res) => {
         var post = {
+            email : req.body.email,
             fullName : req.body.fullName,
             public : req.body.public,
             textContent : req.body.textContent,

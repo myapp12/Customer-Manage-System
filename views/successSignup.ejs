@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="login">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--Load file cnd-->
+    <script src="/assets/scripts/jquery.js"></script>
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="/assets/css/all.css" crossorigin="anonymous" rel="stylesheet">
+    <script src="/assets/scripts/bootstrap.min.js"></script>
+    <!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.min.js"></script> -->
+    <script src="/assets/scripts/angular.min.js"></script>
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+        crossorigin="anonymous">
+
+
+    <!--Load file app-->
+    <link rel="stylesheet" href="/assets/css/login.css">
+    <script src="/assets/scripts/login.js"></script>
+
+    <!--Load sever-->
+    <script src="/assets/server/angular/loginAngular.js"></script>
+    <script src="/assets/server/services/loginServices.js"></script>
+
+
+    <title>Thêm thông tin</title>
+</head>
+
+<body ng-controller="loginController">
+    <div id="logreg-forms">
+        <!--Login-->
+        <form class="form-signin" action="/successSignup" method="post" enctype="multipart/form-data">
+            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Đăng ký thành công</h1>
+            <p style="text-align:center"> (thêm thông tin) </p>
+            <p>Ảnh đại diện</p>
+            <div class="input-group">
+                <input  type="file" class="form-control"
+                    name="file">
+            </div>
+
+            <p ng-show="loadding" style="margin-top: 10px" class="text-center">
+                <span class="fa fa-spinner fa-pulse fa-3x fa-fw"></span>
+            </p>
+
+            <div class="input-group">
+                <button class="btn btn-md btn-rounded btn-block form-control submit" type="submit"><i
+                        class="fas fa-sign-in-alt"></i>
+                    Đăng nhập</button>
+            </div>
+            <hr>
+            <!-- <p>Don't have an account!</p>  -->
+        </form>
+        <br>
+
+    </div>
+</body>
+
+</html>

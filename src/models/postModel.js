@@ -3,15 +3,18 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var postSchema = new Schema({
+    email : String,
     fullName : String,
     public : String,
     textContent : String,
     feel : String,
     comments : [
-        {
+        {   
+            email : String,
             fullName : String,
             textContent : String,
             subComments : [{
+                email : String,
                 fullName : String,
                 textContent : String
             }],

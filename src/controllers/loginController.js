@@ -11,6 +11,7 @@ const authFacebook = require('../../configs/auth/auth.js');
 var Users = require('../models/userModel.js'); // sử dụng model(collection) users
 
 var bcrypt = require('bcryptjs');
+var fs = require('fs');
 
 
 var userMain = {
@@ -26,7 +27,7 @@ passport.use(new FacebookStrategy({
     profileFields : authFacebook.fbAuth.profileFields
   },
   function(accessToken, refreshToken, profile, done) {
-    //console.log(profile);
+    console.log(profile._json);
     Users.findOne({email :profile._json.email} ,(err,user) =>{
         
         if(err){
@@ -41,7 +42,11 @@ passport.use(new FacebookStrategy({
         var newUser = new Users({
             email : profile._json.email,
             fullName : profile._json.name,
-            password : "20naZYk&*@s==KAKD((JMSALALA................facebook" // mật khâu tự định nghĩa =))
+            password : "20naZYk&*@s==KAKD((JMSALALA................facebook", // mật khâu tự định nghĩa =))
+            image : {
+                data : fs.readFileSync("public/images/uploads/facebook.png"),
+                contentType : "image/png"
+            }
         });
 
         newUser.save((err) => { // nếu người dùng chưa tồn tại thì đăng ký cho 1 tài khoản rồi điều hướng đến trang chủ luôn
@@ -78,7 +83,11 @@ passport.use(new GoogleStrategy({
         var newUser = new Users({
             email : profile.emails[0].value,
             fullName : profile.displayName,
-            password : "20naZYk&*@s==KAKD((JMSALALA................google+" // mật khâu tự định nghĩa =))
+            password : "20naZYk&*@s==KAKD((JMSALALA................google+", // mật khâu tự định nghĩa =))
+            image : {
+                data : fs.readFileSync("public/images/uploads/google.jpg"),
+                contentType : "image/png"
+            }
         });
 
         newUser.save((err) => { // nếu người dùng chưa tồn tại thì đăng ký cho 1 tài khoản rồi điều hướng đến trang chủ luôn
@@ -102,7 +111,7 @@ passport.serializeUser((user,done) => { // Lấy thông tin lưu vào cookie
 
 passport.deserializeUser((user,done) =>{ // Truy xuất thông tin từ cookie
     Users.findOne({email:user.email},(err,user) => {
-        userMain.fullName = user.fullName;
+        userMain.email = user.email;
         done(null,user);
     });
 });
@@ -139,10 +148,9 @@ module.exports = (app) => {
 
     app.post('/api/login',(req,res) => {
         bcrypt.compare(req.body.password, req.body.rePassword).then(function(result) { 
-            //console.log(result);
+            console.log(result);
             if(result){ // trùng với mật khẩu dc mã hóa res = true và ngược lại
                 //console.log("Đăng nhập thành công ...");
-                userMain.fullName = req.body.fullName;
                 userMain.email = req.body.email;
                 res.json({
                     result : "true",
@@ -159,6 +167,36 @@ module.exports = (app) => {
 
 
     app.get("/api/userMain",(req,res) => {
-        res.json(userMain);
+        //console.log(userMain.image);
+        Users.findOne({email : userMain.email},function(err,user){
+            if(err){
+                console.log("Đã có lỗi xẩy ra ... file LoginController, url:/api/userMain");    
+                throw err
+            }else{
+                res.json(user);
+            }
+        });
+        
+    });
+
+
+    app.get("/api/image/:email",(req,res) => {
+        //console.log(userMain.image);
+        if(req.params.email.trim() !== ""){
+            Users.findOne({email : req.params.email},function(err,user){
+                if(err){
+                    console.log("Đã có lỗi xẩy ra ... file LoginController, url:/api/userMain");    
+                    throw err
+                }else{
+                    res.contentType(user.image.contentType);
+                    res.send(user.image.data);
+                }
+            });
+        }else{
+            console.log("lỗi");
+            res.send();
+        }
+        
+        
     });
 }

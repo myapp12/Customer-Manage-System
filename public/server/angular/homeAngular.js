@@ -3,7 +3,19 @@ var home = angular.module("home",[]);
 
 
 home.controller("homeController",["$scope","homeServices","$window","$http",($scope,homeServices,$window,$http)=>{
-    
+    //$scope.posts;
+    /* 
+    * Lấy thông tin người đăng nhập : fullName
+     */
+    homeServices.getUserMain().then( (userMain)=> {
+        $scope.userMain.fullName = userMain.data.fullName;
+        $scope.userMain.email = userMain.data.email;
+        $scope.userMain.image = userMain.data.image;
+        console.log($scope.userMain.image);
+        homeServices.getPosts($scope.userMain.email).then((posts) => {
+            $scope.posts = posts.data;
+        });
+    });
 
     
     /**
@@ -37,7 +49,8 @@ home.controller("homeController",["$scope","homeServices","$window","$http",($sc
             fullName : $scope.userMain.fullName,
             public : $scope.public,
             textContent : $scope.textContent,
-            feel : $scope.feel
+            feel : $scope.feel,
+            email : $scope.userMain.email
         };
         homeServices.postStatus($scope.status).then((post) => {
             homeServices.getPosts($scope.userMain.email).then((posts) => {
@@ -64,7 +77,7 @@ home.controller("homeController",["$scope","homeServices","$window","$http",($sc
      * ***********************************************************************************************************************
      */
 
-    $scope.posts;
+   
     
 
     /**
@@ -107,7 +120,8 @@ home.controller("homeController",["$scope","homeServices","$window","$http",($sc
         var text = $('#' + post._id).val();
         post.comments.push({
             fullName : $scope.userMain.fullName,
-            textContent : text
+            textContent : text,
+            email : $scope.userMain.email
         });
 
         homeServices.clickComment(post).then(()=>{
@@ -153,7 +167,8 @@ home.controller("homeController",["$scope","homeServices","$window","$http",($sc
             if(post.comments[i]._id === comment._id){
                 post.comments[i].subComments.push({
                     fullName : $scope.userMain.fullName,
-                    textContent : text
+                    textContent : text,
+                    email : $scope.userMain.email
                 });
                 break;
             }
@@ -179,15 +194,6 @@ home.controller("homeController",["$scope","homeServices","$window","$http",($sc
 
 
 
-    /* 
-    * Lấy thông tin người đăng nhập : fullName
-     */
-    homeServices.getUserMain().then( (userMain)=> {
-        $scope.userMain.fullName = userMain.data.fullName;
-        $scope.userMain.email = userMain.data.email;
-        homeServices.getPosts($scope.userMain.email).then((posts) => {
-            $scope.posts = posts.data;
-        });
-    });
+    
     
 }]);
